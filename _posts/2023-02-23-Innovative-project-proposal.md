@@ -21,7 +21,7 @@ This homework is to propose an innovative project and describe the key features,
 
 ---
 ## 遠端智能衣物&學用品搭配系統
-![](https://github.com/rkuo2023/MCU-project/blob/main/images/ESP32_RoboCar.jpg?raw=true)
+![](http://kjsh.people.cn/NMediaFile/2018/0222/MAIN201802221532000263843128967.jpg?raw=true)
 
 ### 應用功能說明
 1. 智能衣櫃：每件衣服有專屬的吊掛位置，並依每件衣服的款式登錄到相對應的吊掛位置，並以手機程式控制，在手機上以表單呈現每個衣架所屬的衣服圖片及編號，手機觸發所選的衣服後衣架上的夾子將張    開使衣服掉落至衣櫃底部的托盤，並自動將托盤推出，而鞋子之部分也是以自動托盤，推出相對應隻鞋子。

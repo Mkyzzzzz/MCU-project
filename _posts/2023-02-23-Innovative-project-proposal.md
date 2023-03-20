@@ -40,7 +40,7 @@ This homework is to propose an innovative project and describe the key features,
 3. 手機程式設計
 
 ### 系統方塊圖
-![](https://github.com/rkuo2000/MCU-course/blob/main/images/FutureHome_kitchen_robot.png?raw=true)
+![]("C:\Users\Johan\OneDrive\文件\微控制器創新提案方塊圖.pptx"?raw=true)
 
 ---
 ### 參考範例

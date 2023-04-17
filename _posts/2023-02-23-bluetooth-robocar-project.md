@@ -38,7 +38,7 @@ This project is to implement a bluetooth remote controlled robotcar.
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/forward_stop.gif)
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/back.gif)
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/left.gif)
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/WebUI_car.jpg)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/right.gif)
 <br>
 <br>
 

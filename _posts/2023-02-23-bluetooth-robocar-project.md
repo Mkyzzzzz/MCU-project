@@ -19,13 +19,13 @@ This project is to implement a bluetooth remote controlled robotcar.
 
 ### 設計考量與相關技術
 **系統設計考量：**<br>
-1. 操作方式:藍牙遙控手機App
+1. 操作方式:WebUI
 2. 移動方式:兩輪 
 3. 供電方式:鋰電池 3.7V x2
 4. 聯網方式:藍牙
 
 **所需相關技術：**
-1. MIT App Inventor 2 手機程式設計 
+1. WiFi 
 2. Arduino程式設計
 
 **所需相關套件:**

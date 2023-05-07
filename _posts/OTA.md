@@ -56,3 +56,5 @@ void loop(void) {
  ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4427.PNG)
  
  ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4429.jpg)
+ 
+ ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4428.PNG)

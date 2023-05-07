@@ -46,6 +46,7 @@ This project is to implement a bluetooth remote controlled robotcar.
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/RobotCar)
 
 ### 程式碼
+```
 // PWM to DRV8833 dual H-bridge motor driver, PWM freq. = 1000 Hz
 // ESP32 Webserver to receive commands to control RoboCar
 
@@ -177,6 +178,7 @@ void setup() {
 void loop() {
   server.handleClient();
 }
+```
 <br>
 <br>
 

@@ -232,7 +232,7 @@ void loop() {
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/003.jpg)
 
 **成果展示**<br>
-![](https://github.com/kaoethan/MCU-project/blob/main/images/abcd.PNG?raw=true)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/004.png)
 
 **序列埠狀態對比**<br>
 ![](https://github.com/kaoethan/MCU-project/blob/main/images/messageImage_1683434302567.jpg?raw=true)

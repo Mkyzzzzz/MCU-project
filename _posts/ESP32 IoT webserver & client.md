@@ -237,4 +237,4 @@ void loop() {
 **序列埠狀態對比**<br>
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/002.jpg)
 **實作**<br>
-![](https://github.com/kaoethan/MCU-project/blob/main/images/S__9175049.jpg?raw=true)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/001.jpg)

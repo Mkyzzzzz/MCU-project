@@ -3,6 +3,7 @@ IoT webserver & client初始操作<br>
 
 將作為接受器的esp32寫入以下程式<br>
 **esp32接受程式**<br>
+```
 //
 // ESP32 Webserver to receive data from Webclients
 // To use a web browser to open IP address of this webserver 
@@ -128,7 +129,102 @@ void setup() {
 void loop() {
   server.handleClient();
 }
+```
 將作為發射器的esp32連接HTU21D寫入以下程式
 **ESP32傳送訊號程式**<br>
 
-// Webclient to read HTU21DF and
+```
+// Webclient to read HTU21DF and send data to Webserver
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <HTTPClient.h>
+#include <Wire.h>
+#include <Adafruit_HTU21DF.h>
+#include "soc/soc.h"
+#include "soc/rtc_cntl_reg.h"
+
+// Connect Vin to 3-5VDC
+// Connect GND to ground
+// Connect SCL to I2C clock pin (A5 on UNO, D1 on NodeMCU)
+// Connect SDA to I2C data pin (A4 on UNO, D2 on NodeMCU)
+
+Adafruit_HTU21DF htu = Adafruit_HTU21DF();
+
+const char* ssid     = "A18";
+const char* password = "18181818";
+String      webserverIP = "http://192.168.50.55"; // Your Webserver IP address
+
+void setup() {
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
+  Serial.begin(115200);
+  Serial.println("HTU21D-F test");  
+  if (!htu.begin()) {
+    Serial.println("Couldn't find HTU21DF sensor!");
+    while (1);
+  }
+  
+  // We start by connecting to a WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  
+  WiFi.begin(ssid, password);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");  
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  delay(5000);
+
+  float temp  = htu.readTemperature();
+  float humid = htu.readHumidity();
+  Serial.print(temp);
+  Serial.print(" ");
+  Serial.print(humid);
+  Serial.println();
+  
+  String url = webserverIP + "/HTU21D?";
+  url += "T=";
+  url += String(temp);
+  url += "&H=";
+  url += String(humid);
+  
+  if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
+
+     WiFiClient client;
+
+     HTTPClient http;    //Declare object of class HTTPClient
+ 
+     http.begin(client, url);    //Specify request destination
+     http.addHeader("Content-Type", "text/plain");  //Specify content-type header
+ 
+     int httpCode = http.POST("Message from ESP32");   //Send the request
+     String payload = http.getString();                //Get the response payload
+ 
+     Serial.println(httpCode);   //Print HTTP return code
+     Serial.println(payload);    //Print request response payload
+
+     http.end();  //Close connection
+ 
+   }else{
+      Serial.println("Error in WiFi connection");   
+   }
+  
+  Serial.println();
+  Serial.println("closing connection. going to sleep...");
+  // go to deepsleep for 1 minutes
+  //system_deep_sleep_set_option(0);
+  //system_deep_sleep(1 * 60 * 1000000);
+  delay(1*60*100);
+}
+```
+**將發射器連接HTU21D**<br>

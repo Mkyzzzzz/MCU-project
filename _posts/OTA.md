@@ -49,9 +49,8 @@ void setup(void) {
 void loop(void) {
 }
 ```
-### 應用功能說明
-1. Bluetooth remote control App 
-2. two-wheel robocar
+### 網頁展示
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4426.PNG)
 
 ### 設計考量與相關技術
 **系統設計考量：**<br>

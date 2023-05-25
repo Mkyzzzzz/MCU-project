@@ -1,5 +1,5 @@
-### ESP32慣性元件
-## Arduino程式碼
+## ESP32慣性元件
+### Arduino程式碼
 ```
 // I2C device class (I2Cdev) demonstration Arduino sketch for MPU6050 class using DMP (MotionApps v6.12)
 // 6/21/2012 by Jeff Rowberg <jeff@rowberg.net>
@@ -277,7 +277,7 @@ void loop() {
 }
 ```
 
-## Processing程式碼
+### Processing程式碼
 ```
 // I2C device class (I2Cdev) demonstration Processing sketch for MPU6050 DMP output
 // 6/20/2012 by Jeff Rowberg <jeff@rowberg.net>

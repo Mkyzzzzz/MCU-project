@@ -117,6 +117,12 @@ void loop() {
 ```
 ### 成果展示
 安裝感測器:
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4585.jpg?raw=true)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4585.jpg?raw=true)<br>
 感測溫度與濕度:
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4587.jpg?raw=true)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4587.jpg?raw=true)<br>
+
+
+<br>
+<br>
+
+*This site was last updated {{ site.time | date: "%B %d, %Y" }}.*

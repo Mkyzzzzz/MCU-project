@@ -115,6 +115,10 @@ void loop() {
   delay(1*10*1000);
 }
 ```
+
+### 方塊圖
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IoT.png?raw=true)<br>
+
 ### 成果展示
 安裝感測器:
 ![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IMG_4585.jpg?raw=true)<br>

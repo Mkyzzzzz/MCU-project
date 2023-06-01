@@ -233,12 +233,12 @@ void loop() {
 ```
 **將發射器連接HTU21D**<br>
 
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/003.jpg)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/003.jpg?raw=true)<br>
 
 **成果展示**<br>
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/004.png)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/004.png?raw=true)<br>
 
 **序列埠狀態對比**<br>
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/002.jpg)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/002.jpg?raw=true)<br>
 **實作**<br>
-![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/001.jpg)
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/001.jpg?raw=true)<br>

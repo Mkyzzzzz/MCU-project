@@ -3,6 +3,10 @@ IoT webserver & client初始操作<br>
 
 將作為接受器的esp32寫入以下程式<br>
 **esp32接受程式**<br>
+
+###方塊圖
+![](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/IoT2.png?raw=true)<br>
+
 ```
 //
 // ESP32 Webserver to receive data from Webclients

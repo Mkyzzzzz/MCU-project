@@ -147,6 +147,7 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
 <p align="center">圖5.AMB82 MINI and QVGA TFT LCD 接線圖</p>
 
+
 <p align="center">表1. ILI9341 TFT LCD 規格</p>
 
 <div align="center">
@@ -163,6 +164,7 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 | 背光模組 | LED 背光，PWM 可調整亮度                       |
 
 </div>
+
 
 <p align="center">表2. ILI9341 TFT LCD 模組引腳定義與功能說明表</p>
 

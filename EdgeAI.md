@@ -1,6 +1,4 @@
-<p align="center">
-  <span style="font-size:20px;"><b>**AI 微控制應用期末專題實作報告**</b></span>
-</p>
+<p align="center"><p align="center"><span style="font-size:20px;"><b>**AI 微控制應用期末專題實作報告**</b></span></p>
 ## 一、Edge AI MCU System Diagram
 本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
 -AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。

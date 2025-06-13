@@ -8,11 +8,11 @@
 -Camera (內建)：每分鐘擷取影像，送至 Gemini Vision 模型。
 -MicroSD 卡：儲存辨識結果與對應影像。
 -RTC 模組（若接入）：確保時間戳記準確。
-模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。;
-###1. AMB82-mini
-<img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png">
+模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。
+### 1. AMB82-mini
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
 <p align="center">圖1. AMB82-Mini實體外觀圖</p>
-<img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%962.%20AMB82-Mini%E4%B8%BB%E8%A6%81%E4%BB%8B%E9%9D%A2%E8%AA%AA%E6%98%8E%E5%9C%96.png">
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%962.%20AMB82-Mini%E4%B8%BB%E8%A6%81%E4%BB%8B%E9%9D%A2%E8%AA%AA%E6%98%8E%E5%9C%96.png"></p>
 <p align="center">圖2. AMB82-Mini主要介面說明圖</p>
    
 圖3. AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖

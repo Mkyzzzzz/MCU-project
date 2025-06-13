@@ -264,9 +264,9 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 根據應用目標，從不同來源擷取資料:
 
 圖像擷取(Camera):
-GenAI_Camera camera;
+‵‵‵ GenAI_Camera camera;
 camera.begin();
-camera.capture();  // 擷取一張照片
+camera.capture();  // 擷取一張照片 ‵‵‵
 
 語音錄音（Microphone）：
 GenAI_Audio audio;

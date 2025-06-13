@@ -1,13 +1,13 @@
 <p align="center">AI 微控制應用期末專題實作報告</p>
 
 ## 一、Edge AI MCU System Diagram
-  本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
-  •	AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
-  •	ILI9341 TFT LCD：負責顯示圖像、辨識結果或系統狀態。
-  •	PAM8403 + 4Ω 3W Speaker：進行語音播放，傳遞 TTS 結果。
-  •	Camera (內建)：每分鐘擷取影像，送至 Gemini Vision 模型。
-  •	MicroSD 卡：儲存辨識結果與對應影像。
-  •	RTC 模組（若接入）：確保時間戳記準確。
+本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
+-AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
+-ILI9341 TFT LCD：負責顯示圖像、辨識結果或系統狀態。
+-PAM8403 + 4Ω 3W Speaker：進行語音播放，傳遞 TTS 結果。
+-Camera (內建)：每分鐘擷取影像，送至 Gemini Vision 模型。
+-MicroSD 卡：儲存辨識結果與對應影像。
+-RTC 模組（若接入）：確保時間戳記準確。
   模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。;
   1. AMB82-mini
     

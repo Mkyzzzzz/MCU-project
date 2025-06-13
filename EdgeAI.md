@@ -30,21 +30,24 @@
 圖2進一步聚焦於 AMB82-Mini 主板下方的三個 USB 介面與一個 RESET 按鈕，分別對應 UART_DOWNLOAD、USB OTG 與 Micro USB 功能，是韌體燒錄、USB 裝置掛載與序列埠通訊的關鍵接口。這張圖對於軟體開發者和系統整合者來說特別重要，因為錯誤的連接方式可能導致無法下載程式、裝置無法啟動或電力不穩。
       
 圖3則提供最為關鍵的 GPIO 腳位分佈與功能對應說明，包含前後兩面的腳位排列，並以顏色分類標示各腳位用途，例如 SPI、I2C、UART、PWM、ADC、GPIO 等。開發者可依據此圖完成模組整合與接腳設計，例如將 ILI9341 TFT LCD 透過 SPI 腳位接入，或將麥克風與喇叭透過 I2S、PWM 控制端連接，此外也能依據腳位分配規劃按鈕輸入或感測器模組串接。
-  
-GPIO INT（General-Purpose Input/Output with Interrupts）
-  
-      支援中斷觸發的 GPIO 腳位可用於偵測電壓變化（如上升緣/下降緣）並自動呼叫中斷函數，不需輪詢（polling），節省 CPU 運算資源，實現事件驅動控制。
-  應用實例：
-  •	按鈕按壓觸發畫面切換
-  •	PIR 感測器啟動語音警示
-  •	碰撞感測器觸發機械動作
-  對應腳位：
-  幾乎所有 GPIO 腳位皆支援中斷，包括 PF0 ~ PF15、PE1 ~ PE6、PD14 ~ PD18、PA0 ~ PA3
-  	ADC（Analog to Digital Converter）
-      ADC 將外部模擬訊號（連續電壓）轉為數位資料，供 MCU 做進一步分析與處理。AMB82-Mini 提供 8 個 ADC 通道，最大解析度 12-bit。
-  應用實例：
-  •	讀取光敏電阻控制螢幕亮度
-  •	偵測土壤濕度控制自動澆水
-  •	監控電池電壓防止過放
-  對應腳位：
-  PF0（A0）、PF1（A1）、PF2（A2）、PF3（*A3）、PA0（A4）、PA1（A5）、PA2（A6）、PA3（A7）
+
+   GPIO INT（General-Purpose Input/Output with Interrupts）
+支援中斷觸發的 GPIO 腳位可用於偵測電壓變化（如上升緣/下降緣）並自動呼叫中斷函數，不需輪詢（polling），節省 CPU 運算資源，實現事件驅動控制。
+應用實例：
+
+- 按鈕按壓觸發畫面切換
+
+- PIR 感測器啟動語音警示
+
+- 碰撞感測器觸發機械動作
+
+對應腳位：
+幾乎所有 GPIO 腳位皆支援中斷，包括 PF0 ~ PF15、PE1 ~ PE6、PD14 ~ PD18、PA0 ~ PA3
+   ADC（Analog to Digital Converter）
+ADC 將外部模擬訊號（連續電壓）轉為數位資料，供 MCU 做進一步分析與處理。AMB82-Mini 提供 8 個 ADC 通道，最大解析度 12-bit。
+應用實例：
+•  讀取光敏電阻控制螢幕亮度
+•  偵測土壤濕度控制自動澆水
+•  監控電池電壓防止過放
+對應腳位：
+PF0（A0）、PF1（A1）、PF2（A2）、PF3（*A3）、PA0（A4）、PA1（A5）、PA2（A6）、PA3（A7）

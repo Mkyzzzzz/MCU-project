@@ -92,7 +92,7 @@ SPI 為同步序列通訊，速度快，適用於 TFT 顯示器、SD 卡、Flash
 - 控制 ILI9341 TFT LCD 顯示畫面
 - 儲存影像資料至 MicroSD 卡模組
 - 外接 Flash 記憶體儲存語音模型
-- 
+
 對應腳位：
 
 PF5（SPI1_MISO）、PF6（SPI1_SCLK）、PF7（SPI1_MOSI）、PF8（SPI1_SS）、PE3（SPI_MOSI）、PE2（SPI_MISO）、PE1（SPI_SCLK）、PE4（SPI_SS）

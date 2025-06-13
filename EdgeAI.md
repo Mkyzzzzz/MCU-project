@@ -37,9 +37,7 @@
 應用實例：
 
 - 按鈕按壓觸發畫面切換
-
 - PIR 感測器啟動語音警示
-
 - 碰撞感測器觸發機械動作
 
 對應腳位：
@@ -127,7 +125,7 @@ PA0（SWD_DATA）、PA1（SWD_CLK）
 
 ⚠ 注意：若啟用 SWD 模式，A4/A5 與 I2C2 將無法同時使用。
 
-####　§　LED（On-Board LED Control）
+§　LED（On-Board LED Control）
 
 板載 LED 可作為系統執行狀態、網路連線、錯誤警告等視覺提示，亦可當作普通 GPIO 控制。
 

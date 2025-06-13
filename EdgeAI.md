@@ -1,6 +1,6 @@
 # <p align="center"><p align="center"><span style="font-size:50px;"><b>EdgeAI 微控制應用期末專題實作報告</b></span></p>
 
-## 一、Edge AI MCU System Diagram
+## 一、EdgeAI MCU System 應用專案簡介
 本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
 
 - AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
@@ -245,3 +245,36 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 |音圈材質	|銅線音圈 / 鋁音圈|
 
 </div>
+
+## 二、EdgeAI MCU 系統圖
+
+## 三、GenAI程式設計流程
+在使用 GenAI 函式庫（特別針對 AMB82-MINI 開發板）進行程式設計時，整體流程可分為幾個明確的階段，根據功能需求（圖像辨識、語音辨識、文字生成、文字轉語音等）進行模組搭配。以下是 GenAI 程式設計的完整流程說明：
+
+### 1.初始化階段
+
+步驟:
+- 引入必要的頭檔（依功能需求）
+- 初始化 WiFi（連接網路）
+- 初始化 GenAI 函式庫與 API Key
+- 初始化設備（如 Camera、Microphone、RTC、LCD）
+
+### 2.資料擷取階段(視應用)
+
+根據應用目標，從不同來源擷取資料:
+
+圖像擷取(Camera):
+GenAI_Camera camera;
+camera.begin();
+camera.capture();  // 擷取一張照片
+
+語音錄音（Microphone）：
+GenAI_Audio audio;
+audio.begin();
+audio.record(5);  // 錄 5 秒音
+
+取得時間(RTC):
+RTC.getTimeString();  // 取得目前時間字串
+
+觸控輸入（ADC）：
+int touchValue = analogRead(TOUCH_PIN);  // 讀取觸控

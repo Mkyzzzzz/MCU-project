@@ -140,5 +140,40 @@ PA0（SWD_DATA）、PA1（SWD_CLK）
 PF9：LED_BUILTIN / LED_B（藍燈）、PE6：LED_G（綠燈）
 
 ### 2. ILI9341 TFT LCD
+ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD 顯示模組，搭載 240×320 像素解析度 與 SPI 通訊介面。該模組內建 ILI9341 顯示驅動 IC，支援 262K 色彩顯示與圖形加速功能，能夠顯示影像、文字、圖形介面，常見於智慧手持裝置、嵌入式儀表與 IoT 應用。
 
-    ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD 顯示模組，搭載 240×320 像素解析度 與 SPI 通訊介面。該模組內建 ILI9341 顯示驅動 IC，支援 262K 色彩顯示與圖形加速功能，能夠顯示影像、文字、圖形介面，常見於智慧手持裝置、嵌入式儀表與 IoT 應用。
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
+<p align="center">圖4. ILI9341 TFT LCD實體外觀圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
+<p align="center">圖5.AMB82 MINI and QVGA TFT LCD 接線圖</p>
+
+<p align="center">表1. ILI9341 TFT LCD 規格</p>
+
+項目	說明
+顯示尺寸	2.4 吋 / 2.8 吋 TFT LCD
+解析度	      240 × 320 pixels
+控制晶片	ILI9341
+通訊介面	SPI（支援 4 線序列通訊，亦可設定為 8-bit 並列）
+顯示色彩	262K（18-bit）真彩顯示
+操作電壓	3.3V（邏輯電平，部分模組具備 5V 轉接）
+觸控功能	可選（部分模組具電阻式/電容式觸控，搭配 XPT2046）
+背光模組	LED 背光，PWM 可調整亮度
+
+表2. ILI9341 TFT LCD 模組引腳定義與功能說明表
+
+序號	引腳標號	說明
+1	VCC	5V/3.3V電源輸入
+2	GND	接地
+3	CS	液晶屏片選信號，低電平使能
+4	RESET	液晶屏重定信號，低電平重定
+5	DC/RS	液晶屏寄存器/資料選擇信號，低電平：寄存器，高電平：數據
+6	SDI(MOSI)	SPI匯流排寫資料信號
+7	SCK	SPI匯流排時鐘信號
+8	LED	背光控制，高電平點亮，如無需控制則接3.3V常亮
+9	SDO(MISO)	SPI匯流排讀數據信號，如無需讀取功能則可不接
+		(以下為觸摸屏信號線接線，如無需觸摸或者模組本身不帶觸摸功能，可不連接)
+10	T_CLK	觸摸SPI匯流排時鐘信號
+11	T_CS	觸摸屏片選信號，低電平使能
+12	T_DIN	觸摸SPI匯流排輸入
+13	T_DO	觸摸SPI匯流排輸出
+14	T_IRQ	觸摸屏中斷信號，檢測到觸摸時為低電平

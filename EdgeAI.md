@@ -148,6 +148,7 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 <p align="center">圖5.AMB82 MINI and QVGA TFT LCD 接線圖</p>
 
 
+
 <p align="center">表1. ILI9341 TFT LCD 規格</p>
 
 <div align="center">

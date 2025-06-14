@@ -1,10 +1,10 @@
 # <p align="center"><p align="center"><span style="font-size:50px;"><b>EdgeAI 微控制應用期末專題實作報告</b></span></p>
 
-## 一、EdgeAI MCU System 應用專案簡介
+## 一、EdgeAI MCU 系統架構
 本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-mini%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E5%9C%96.png"></p>
-<p align="center">圖1. AMB82-Mini系統架構圖</p>
+<p align="center">圖1 AMB82-Mini系統架構圖</p>
 
 - AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
 
@@ -22,11 +22,11 @@
 
 ### 1. AMB82-mini
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
-<p align="center">圖1. AMB82-Mini實體外觀圖</p>
+<p align="center">圖2 AMB82-Mini實體外觀圖</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%962.%20AMB82-Mini%E4%B8%BB%E8%A6%81%E4%BB%8B%E9%9D%A2%E8%AA%AA%E6%98%8E%E5%9C%96.png"></p>
-<p align="center">圖2. AMB82-Mini主要介面說明圖</p>
+<p align="center">圖3 AMB82-Mini主要介面說明圖</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%963.%20AMB82-Mini%20%E9%96%8B%E7%99%BC%E6%9D%BF%E5%89%8D%E5%BE%8C%E8%A6%96%E5%9C%96%E8%88%87%20GPIO%20%E8%85%B3%E4%BD%8D%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E5%9C%96.png"></p>
-<p align="center">圖3. AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖</p>
+<p align="center">圖4 AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖</p>
 
 圖1展示了 AMB82-Mini 的實體外觀，其中左側為搭載鏡頭的主開發板，右側為擴充模組，兩者皆具備豐富的 GPIO 排針與無線通訊模組。該圖有助於辨識實體接腳位置、連接模組佈局與實體安裝方向，是開發初期理解板子配置的第一步。鏡頭模組的存在也預示了該開發板具備即時影像擷取與傳送的能力，對於後續進行圖像辨識等 AI 應用至關重要。
       
@@ -146,12 +146,12 @@ PF9：LED_BUILTIN / LED_B（藍燈）、PE6：LED_G（綠燈）
 ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD 顯示模組，搭載 240×320 像素解析度 與 SPI 通訊介面。該模組內建 ILI9341 顯示驅動 IC，支援 262K 色彩顯示與圖形加速功能，能夠顯示影像、文字、圖形介面，常見於智慧手持裝置、嵌入式儀表與 IoT 應用。
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
-<p align="center">圖4. ILI9341 TFT LCD實體外觀圖</p>
+<p align="center">圖5 ILI9341 TFT LCD實體外觀圖</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
-<p align="center">圖5.AMB82 MINI and QVGA TFT LCD 接線圖</p>
+<p align="center">圖6 AMB82 MINI and QVGA TFT LCD 接線圖</p>
 
 
-<p align="center">表1. ILI9341 TFT LCD 規格</p>
+<p align="center">表1 ILI9341 TFT LCD 規格</p>
 
 <div align="center">
 	
@@ -169,7 +169,7 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 </div>
 
 
-<p align="center">表2. ILI9341 TFT LCD 模組引腳定義與功能說明表</p>
+<p align="center">表2 ILI9341 TFT LCD 模組引腳定義與功能說明表</p>
 
 <div align="center">
 	
@@ -196,7 +196,7 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 ### 3. PAM8403
 PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供最高 3W + 3W 雙聲道立體聲輸出，適用於驅動如 4Ω/3W 或 8Ω/2W 的小型喇叭。它常被整合為 小型擴大器模組，可直接與微控制器（如 AMB82-Mini）搭配，用於播放語音合成（TTS）或音樂訊號。
 
-<p align="center">表3. PAM8403產品特性</p>
+<p align="center">表3 PAM8403產品特性</p>
 
 <div align="center">
 	
@@ -213,7 +213,7 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 </div>
 
 
-<p align="center">表4. PAM8403腳位定義</p>
+<p align="center">表4 PAM8403腳位定義</p>
 
 <div align="center">
 	
@@ -233,7 +233,7 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 ### 4. 4ohm 3W speaker
 4Ω 3W 喇叭是一款常見於嵌入式系統、智慧裝置與音訊模組中的 小功率聲音輸出元件，具備結構緊湊、阻抗與功率規格標準化、易於搭配音訊擴大器模組（如 PAM8403）等優點。此類喇叭設計用於近距離音訊播放，適合語音提示、簡易音樂與 TTS（Text-to-Speech）語音輸出等應用。
 
-<p align="center">表5. 4ohm 3W speaker規格參數</p>
+<p align="center">表5 4ohm 3W speaker規格參數</p>
 
 <div align="center">
 	
@@ -249,9 +249,7 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 </div>
 
-## 二、EdgeAI MCU 系統圖
-
-## 三、GenAI程式設計流程
+## 二、GenAI 程式設計流程
 在使用 GenAI 函式庫（特別針對 AMB82-MINI 開發板）進行程式設計時，整體流程可分為幾個明確的階段，根據功能需求（圖像辨識、語音辨識、文字生成、文字轉語音等）進行模組搭配。以下是 GenAI 程式設計的完整流程說明：
 
 ### 1.初始化階段
@@ -343,6 +341,9 @@ file.close();
 - 按鈕 / 觸控切換模式
 - 定時器 / RTC 控制週期性觸發
 - 檢查 AI 回傳是否與前次不同，決定是否更新畫面/播放
+
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/GenAI%20%E7%B7%A8%E7%A2%BC%E8%A8%AD%E8%A8%88%E6%B5%81%E7%A8%8B.png"></p>
+<p align="center">圖7 GenAI 編碼設計流程</p>
 
 ## 四、程式生成提示語設計（Prompts for Code Generation）
 
@@ -862,4 +863,7 @@ void sdPlayMP3(String filename)
 |-------|-----------|
 |GenAIVision_TTS_TFT.ino|	拍照並透過 Gemini Vision 辨識情緒，並可將文字顯示在 LCD 上|
 |SDCardPlayMP3.ino|	從 SD 卡讀取並播放指定的 MP3 音樂檔案|
+
+
+
 

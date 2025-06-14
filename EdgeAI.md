@@ -297,42 +297,43 @@ String result = GenAI.visionDescription(camera.getImage());
 ```
 
 語音辨識:(Whisper):
-ˋˋˋ
+```
 String transcript = GenAI.transcribe(audio.getWavData());
-ˋˋˋ
+```
 
 指令生成、故事生成(Text):
-ˋˋˋ
+```
 String prompt = "請用圖片寫一個童話故事";
 String story = GenAI.generateText(prompt);
-ˋˋˋ
+```
 
 搭配RTC:
-ˋˋˋ
+```
 String prompt = "現在時間是 " + RTC.getTimeString() + "，請描述天氣狀況";
 String result = GenAI.generateText(prompt);
-ˋˋˋ
+```
 
 ### 4.輸出結果(視需求)
 
 可使用多種方式顯示/播放AI結果:
 
 顯示在LCD:
-ˋˋˋ
+```
 lcd.print(result);
-ˋˋˋ
+```
 
 播放語音(TTS):
-ˋˋˋ
+```
 TTS.speak(result);  // 使用 Google TTS 朗讀
-ˋˋˋ
+```
 
 儲存到SD卡(選用):
-ˋˋˋ
+```
 file = SD.open("/result.txt", FILE_WRITE);
 file.println(result);
 file.close();
-ˋˋˋ
+```
+
 ### 5. 控制流程與互動
 可以使用:
 

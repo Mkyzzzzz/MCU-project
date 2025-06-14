@@ -270,7 +270,7 @@ camera.begin();
 camera.capture();  // 擷取一張照片
 ```
 
-語音錄音（Microphone）：
+語音錄音(Microphone）：
 ```
 GenAI_Audio audio;
 audio.begin();
@@ -282,7 +282,84 @@ audio.record(5);  // 錄 5 秒音
 RTC.getTimeString();  // 取得目前時間字串
 ```
 
-觸控輸入（ADC）：
+觸控輸入(ADC）：
 ```
 int touchValue = analogRead(TOUCH_PIN);  // 讀取觸控
 ```
+
+### 3.呼叫AI模型推論
+
+依需求選擇使用Gemini Vision、Text、Audio:
+
+圖像辨識(Vision):
+```
+String result = GenAI.visionDescription(camera.getImage());
+```
+
+語音辨識:(Whisper):
+ˋˋˋ
+String transcript = GenAI.transcribe(audio.getWavData());
+ˋˋˋ
+
+指令生成、故事生成(Text):
+ˋˋˋ
+String prompt = "請用圖片寫一個童話故事";
+String story = GenAI.generateText(prompt);
+ˋˋˋ
+
+搭配RTC:
+ˋˋˋ
+String prompt = "現在時間是 " + RTC.getTimeString() + "，請描述天氣狀況";
+String result = GenAI.generateText(prompt);
+ˋˋˋ
+
+### 4.輸出結果(視需求)
+
+可使用多種方式顯示/播放AI結果:
+
+顯示在LCD:
+ˋˋˋ
+lcd.print(result);
+ˋˋˋ
+
+播放語音(TTS):
+ˋˋˋ
+TTS.speak(result);  // 使用 Google TTS 朗讀
+ˋˋˋ
+
+儲存到SD卡(選用):
+ˋˋˋ
+file = SD.open("/result.txt", FILE_WRITE);
+file.println(result);
+file.close();
+ˋˋˋ
+### 5. 控制流程與互動
+可以使用:
+
+- 按鈕 / 觸控切換模式
+- 定時器 / RTC 控制週期性觸發
+- 檢查 AI 回傳是否與前次不同，決定是否更新畫面/播放
+
+## 四、程式生成提示語設計（Prompts for Code Generation）
+
+程式生成提示語設計（Prompts for Code Generation）是一門設計如何清楚、有效地向 AI 模型（如 GPT、Gemini、Copilot 等）描述你想要產生的程式碼的技巧。良好的提示語可以幫助你獲得準確、可執行、易維護的程式碼。
+
+<b>為什麼提示語（Prompt）很重要？</b>
+
+AI 是根據你提供的文字提示來推論程式碼。提示設計得越清楚，輸出的程式碼越貼近你的需求。
+
+<b>設計程式生成提示語的 5 大原則:</b>
+1.明確說明目標功能
+2.指定語言與平台
+3.指出輸入 / 輸出規格
+4.補充使用限制 / 框架 / API
+5.使用範例（很關鍵！）
+
+<b>小總結:</b>
+寫好提示語的重點是：「清楚、具體、有結構」。
+
+- 告訴 AI 你要什麼（功能、語言、框架）
+- 限制不想要的東西
+- 加入範例與邏輯限制
+- 越明確，越好用
+

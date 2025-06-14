@@ -375,11 +375,13 @@ Code:
 #### a.作業目標(Objective):
 
 AI-assisted Recycle System
+
 👉 使用人工智慧輔助的回收分類系統。主要功能是透過按鈕拍照，AI 辨識影像內容並語音播報，幫助使用者判斷垃圾屬於哪一類。
 
 #### b.硬體設備(Hardware):
 
 Development Board: AMB82-mini（MCU: Realtek RTL8735B）
+
 👉 使用 Realtek AMB82-mini 開發板，它是一款內建攝影機、支援 Wi-Fi、具備 AI 應用能力的微控制器。
 
 #### c.功能說明(Features):

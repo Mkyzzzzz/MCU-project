@@ -268,17 +268,21 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 GenAI_Camera camera;
 camera.begin();
 camera.capture();  // 擷取一張照片
+```
 
 語音錄音（Microphone）：
 ```
 GenAI_Audio audio;
 audio.begin();
 audio.record(5);  // 錄 5 秒音
+```
 
 取得時間(RTC):
 ```
 RTC.getTimeString();  // 取得目前時間字串
+```
 
 觸控輸入（ADC）：
 ```
 int touchValue = analogRead(TOUCH_PIN);  // 讀取觸控
+```

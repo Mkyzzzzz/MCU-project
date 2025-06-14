@@ -369,7 +369,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 
 ### 1.AI輔助回收分類系統
 
-Code:
+<b>Code:</b>
 
 <b> AI-assisted Recycle System（AI 輔助回收系統）</b>
 #### a.作業目標(Objective):
@@ -408,3 +408,48 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 </div>
 
+### 2.AI輔助英語教學 ~ 讀字卡及造句
+
+<b>AI-assisted Educational System(AI輔助學習系統)</b>
+
+<b>Code:</b>
+
+#### a.作業目標(Objective):
+
+AI-assisted Educational System
+
+👉 利用 AI 輔助學習，讓開發板透過攝影機辨識「單字卡」，唸出單字，並自動用該單字造句再唸出來，達到語言學習的效果。
+
+#### b.硬體設備(Hardware):
+
+Development Board: AMB82-mini（MCU: Realtek RTL8735B）
+
+👉 使用 Realtek AMB82-mini 開發板，內建攝影機與 Wi-Fi，適合進行 AI 應用與語音播放。
+
+#### c.功能說明(Features):
+
+##### (一)按下按鈕拍照
+使用板上的按鈕觸發攝影機拍照。
+
+##### (二)使用 Gemini Vision 辨識卡片上的單字
+利用 Google Gemini Vision AI 判斷照片裡的東西，例如「這是一個寶特瓶」或「這是一張紙」。
+
+##### (三)將辨識結果 Text1 交給 Google TTS 播放語音
+使用 Google Text-to-Speech (TTS) 將文字說出來，例如「這是一個可以回收的寶特瓶」。
+
+##### (四)將 Text1 再送到 Gemini LLM 要求造句
+例如輸入「apple」，Gemini LLM 回傳「I eat an apple every day.」。
+
+##### (五)將造句結果 Text2 再透過 TTS 播出
+最後用 Google TTS 朗讀整句話，加深使用者語言學習效果。
+
+#### d.整合專案範例（Project Examples):
+
+<div align="center">
+
+|專案名稱|	說明|
+|-------|-----------|
+|GenAIVision_TTS.ino|	基本功能整合：拍照 → AI 辨識 → TTS 播音|
+|GenAIVision_TTS_Text_ReadWordCard.ino|	完整教學流程：拍照 → 辨識單字 → 唸出單字 → 自動造句 → 唸出句子|
+
+</div>

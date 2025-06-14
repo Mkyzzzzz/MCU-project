@@ -397,8 +397,12 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 這些是將多個功能整合起來的進階範例：
 
+<div align="center">
+	
 |專案名稱|說明|
 |-------|-----------|
 |GenAIVision_TTS.ino|	拍照 → 使用 Vision AI 分析 → 使用 TTS 播放語音|
 |GenAIVision_TTS_LCD.ino|	拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音|
+
+</div>
 

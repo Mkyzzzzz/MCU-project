@@ -414,8 +414,6 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 ### 2.AI輔助英語教學 ~ 讀字卡及造句
 
-<b>AI-assisted Educational System(AI輔助學習系統)</b>
-
 <b>Code:</b>
 ```
 /*

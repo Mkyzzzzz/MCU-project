@@ -857,13 +857,224 @@ void sdPlayMP3(String filename)
 ##### 貳、播放 MP3 音樂檔
 根據 AI 回傳的歌曲檔名（如 "sad.mp3"），從 SD 卡 播放對應的 MP3 音樂檔案。
 
-#### c.相關功能範例
+#### c.相關功能範例（Functional Examples）
+
+<div align="center">
 
 |範例檔案|	說明|
 |-------|-----------|
 |GenAIVision_TTS_TFT.ino|	拍照並透過 Gemini Vision 辨識情緒，並可將文字顯示在 LCD 上|
 |SDCardPlayMP3.ino|	從 SD 卡讀取並播放指定的 MP3 音樂檔案|
 
+</div>
 
+### 4.AI監視錄影系統
 
+<b>Code:</b>
+```
+/*
+  This sketch captures an image every minute, sends it to Gemini Vision,
+  and stores the image and description on an SD card only if the description changes.
+  Filenames will include the date and time.
+  Using 'gemini-1.5-flash' model as 'gemini-1.0-pro-vision' is deprecated.
 
+  Credit : ChungYi Fu (Kaohsiung, Taiwan) - Original example codes
+*/
+
+#include <WiFi.h>
+#include <NTPClient.h> // For getting time from NTP server
+#include <WiFiUdp.h>   // Required for NTPClient
+
+#include "GenAI.h"
+#include "VideoStream.h"
+#include "AmebaFatFS.h"
+
+String Gemini_key = "AIzaSyAzAQRnNDlBXiac4E5SZcLSua-luXpbC3E"; // Paste your generated Gemini API key here
+char wifi_ssid[] = "hahaha";       // Your network SSID (name)
+char wifi_pass[] = "93034570";   // Your network password
+
+WiFiSSLClient client;
+GenAI llm;
+VideoSetting config(768, 768, CAM_FPS, VIDEO_JPEG, 1); // 可根據需求調整解析度
+#define CHANNEL 0
+
+uint32_t img_addr = 0;
+uint32_t img_len = 0;
+
+String prompt_msg = "Please provide a brief summary of the image, including any text if visible."; // Simplified prompt
+String previous_gemini_text = ""; // 儲存上一次 Gemini 的回應，用於比較
+
+AmebaFatFS fs;
+File logFile; // 用於儲存文字描述
+
+// NTP Client setup
+WiFiUDP ntpUDP;
+// NTP 伺服器, GMT+8 時區偏移 (台灣時間)
+// 請根據您的實際時區調整 8 * 3600
+NTPClient timeClient(ntpUDP, "pool.ntp.org", 8 * 3600);
+
+unsigned long lastCaptureTime = 0;
+const unsigned long captureInterval = 60000; // 1 分鐘 (毫秒)
+
+void initWiFi() {
+  Serial.println("\n正在連接到 WiFi...");
+  WiFi.begin(wifi_ssid, wifi_pass);
+
+  uint32_t StartTime = millis();
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    if ((StartTime + 15000) < millis()) { // 增加 WiFi 連線超時時間
+      Serial.println("連接 WiFi 失敗。正在重試...");
+      StartTime = millis(); // 重設計時器以重試
+    }
+  }
+
+  Serial.println("WiFi 連線成功。");
+  Serial.print("IP 位址: ");
+  Serial.println(WiFi.localIP());
+}
+
+String formatDateTime(unsigned long epochTime) {
+  time_t rawtime = epochTime;
+  struct tm * ti;
+  ti = localtime(&rawtime);
+
+  // 格式: YYYYMMDD_HHMMSS
+  char buffer[20];
+  sprintf(buffer, "%04d%02d%02d_%02d%02d%02d",
+          ti->tm_year + 1900, ti->tm_mon + 1, ti->tm_mday,
+          ti->tm_hour, ti->tm_min, ti->tm_sec);
+  return String(buffer);
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  initWiFi();
+
+  // 初始化 NTP 客戶端
+  timeClient.begin();
+  Serial.println("正在從 NTP 伺服器更新時間...");
+  while(!timeClient.update()) { // 等待時間更新完成
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println("\n時間已更新。");
+  Serial.print("當前時間: ");
+  Serial.println(timeClient.getFormattedTime());
+
+  config.setRotation(0); // 如果相機方向不同，請調整旋轉角度
+  Camera.configVideoChannel(CHANNEL, config);
+  Camera.videoInit();
+  Camera.channelBegin(CHANNEL);
+  Camera.printInfo();
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_G, OUTPUT);
+
+  // 初始化 SD 卡
+  if (!fs.begin()) {
+    Serial.println("錯誤: 無法初始化 SD 卡！");
+    while (true); // 如果 SD 卡失敗則停止
+  }
+  Serial.println("SD 卡初始化成功。");
+
+  lastCaptureTime = millis() - captureInterval; // 讓第一次捕捉立即發生
+}
+
+void loop() {
+  timeClient.update(); // 定期更新時間
+
+  // 檢查是否到了捕捉圖像的時間
+  if (millis() - lastCaptureTime >= captureInterval) {
+    lastCaptureTime = millis(); // 更新上次捕捉時間
+
+    digitalWrite(LED_BUILTIN, HIGH); // 指示相機正在活動
+    Serial.println("\n正在捕捉圖像...");
+    Camera.getImage(0, &img_addr, &img_len);
+    digitalWrite(LED_BUILTIN, LOW); // 關閉指示燈
+
+    Serial.println("正在將圖像發送到 Gemini Vision (gemini-1.5-flash)...");
+    // ****** 關鍵更改：將模型名稱從 "gemini-pro-vision" 更改為 "gemini-1.5-flash" ******
+    String current_gemini_text = llm.geminivision(Gemini_key, "gemini-1.5-flash", prompt_msg, img_addr, img_len, client);
+
+    // Simplify the Gemini response by trimming it to a certain length (e.g., 200 characters)
+    if (current_gemini_text.length() > 200) {
+      current_gemini_text = current_gemini_text.substring(0, 200) + "...";
+    }
+
+    Serial.println("\nGemini 回應:");
+    Serial.println(current_gemini_text);
+
+    // 與之前的文字進行比較
+    // 檢查回應文字是否與上次不同，並且回應長度大於 0 (避免儲存空回應)
+    if (current_gemini_text != previous_gemini_text && current_gemini_text.length() > 0) {
+      Serial.println("偵測到場景變化或新的有效描述。正在儲存圖像和文字。");
+
+      // 取得當前格式化的日期和時間作為檔名
+      String dateTimeString = formatDateTime(timeClient.getEpochTime());
+
+      // 儲存圖像
+      String imageFileName = "/" + dateTimeString + ".jpg";
+      File imageFile = fs.open(imageFileName);
+      if (imageFile) {
+        imageFile.write((uint8_t *)img_addr, img_len);
+        imageFile.close();
+        Serial.print("圖像已儲存為: ");
+        Serial.println(imageFileName);
+      } else {
+        Serial.println("錯誤: 無法打開圖像文件進行寫入。");
+      }
+
+      // 儲存文字描述
+      String logFileName = "/" + dateTimeString + ".txt";
+      logFile = fs.open(logFileName);
+      if (logFile) {
+        logFile.print(current_gemini_text);
+        logFile.close();
+        Serial.print("描述已儲存為: ");
+        Serial.println(logFileName);
+      } else {
+        Serial.println("錯誤: 無法打開描述文件進行寫入。");
+      }
+
+      previous_gemini_text = current_gemini_text; // 更新先前的文字
+    } else {
+      Serial.println("未偵測到明顯的場景變化或回應為空。不儲存。");
+    }
+  }
+
+  // 為了避免迴圈執行過快，添加一個小延遲
+  delay(100);
+}
+
+```
+
+#### a.作業目標（Objective）
+使用 AMB82-mini 開發板，每分鐘自動拍照一次，將照片送給 Gemini Vision 進行場景描述。如果與上一次的場景描述不同，則將該照片與描述儲存起來（使用日期與時間作為檔案名稱）。若與上次相同，則不儲存，節省空間。
+
+#### b.開發板與功能（Board & Function）
+Board: AMB82-mini（Realtek RTL8735B）
+
+👉 支援攝影機拍照、Wi-Fi 上傳、SD 卡儲存、RTC 實時時鐘功能。
+
+#### c.功能流程說明（Function Flow）
+##### 壹、每分鐘自動拍照一次
+使用 RTC（實時時鐘） 或 millis() 計時器，每 60 秒觸發一次攝影機拍照。
+##### 貳、照片送出給 Gemini Vision 做場景辨識
+拍下來的影像上傳給 Google Gemini Vision，得到一段文字描述（例如："A park with people walking."）
+##### 參、 比對新回覆與上一次的文字是否相同
+如果相同 → 忽略，不存圖也不存文字
+如果不同 → 儲存該張 JPG 圖片與文字檔，並使用 RTC 的日期與時間命名
+
+#### d.參考範例程式碼（Sample Codes）
+
+<div align="center">
+
+|範例檔名|	說明|
+|--------|----------|
+|GenAIVision.ino|	拍照並將影像送給 Gemini Vision，取得場景描述文字|
+|CaptureJPG_SDcard.ino|	將攝影機擷取的 JPG 圖片儲存在 SD 卡|
+|examples > AmebaRTC > Simple_RTC.ino|	使用內建 RTC 時鐘模組，獲得目前的時間與日期，用於檔案命名與定時執行|
+
+</div>

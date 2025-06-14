@@ -3,6 +3,9 @@
 ## 一、EdgeAI MCU System 應用專案簡介
 本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
 
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-mini%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E5%9C%96.png"></p>
+<p align="center">圖1. AMB82-Mini系統架構圖</p>
+
 - AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
 
 - ILI9341 TFT LCD：負責顯示圖像、辨識結果或系統狀態。
@@ -12,7 +15,7 @@
 - Camera (內建)：每分鐘擷取影像，送至 Gemini Vision 模型。
 
 - MicroSD 卡：儲存辨識結果與對應影像。
-
+- 
 - RTC 模組（若接入）：確保時間戳記準確。
 
 模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。

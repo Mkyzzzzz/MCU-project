@@ -372,17 +372,33 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 Code:
 
 <b> AI-assisted Recycle System（AI 輔助回收系統）</b>
-#### a.作業目標(Objective)
+#### a.作業目標(Objective):
 
 AI-assisted Recycle System
 👉 使用人工智慧輔助的回收分類系統。主要功能是透過按鈕拍照，AI 辨識影像內容並語音播報，幫助使用者判斷垃圾屬於哪一類。
 
-#### b.硬體設備(Hardware)
+#### b.硬體設備(Hardware):
 
 Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 👉 使用 Realtek AMB82-mini 開發板，它是一款內建攝影機、支援 Wi-Fi、具備 AI 應用能力的微控制器。
 
 #### c.功能說明(Features):
 
+##### (一)按下按鈕拍照
+使用板上的按鈕觸發攝影機拍照。
 
+##### (二)送出照片到 Google Gemini（Vision 模型）分析內容
+利用 Google Gemini Vision AI 判斷照片裡的東西，例如「這是一個寶特瓶」或「這是一張紙」。
+
+##### (三)把 AI 分析出來的內容，透過 Google TTS 轉成語音並播放
+使用 Google Text-to-Speech (TTS) 將文字說出來，例如「這是一個可以回收的寶特瓶」。
+
+#### d.整合專案範例（Project Examples):
+
+這些是將多個功能整合起來的進階範例：
+
+|專案名稱|說明|
+|-------|-----------|
+|GenAIVision_TTS.ino|	拍照 → 使用 Vision AI 分析 → 使用 TTS 播放語音|
+|GenAIVision_TTS_LCD.ino|	拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音|
 

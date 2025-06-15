@@ -30,7 +30,7 @@ name: 張家豪
 
 ### 1. AMB82-mini
 <p align="center">
-  <img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png" width="70%">
+  <img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png?raw=true" width="70%">
 </p>
 <p align="center">圖2 AMB82-Mini實體外觀圖</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%963.%20AMB82-Mini%20%E9%96%8B%E7%99%BC%E6%9D%BF%E5%89%8D%E5%BE%8C%E8%A6%96%E5%9C%96%E8%88%87%20GPIO%20%E8%85%B3%E4%BD%8D%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E5%9C%96.png">圖3 AMB82-Mini主要介面說明圖</p>

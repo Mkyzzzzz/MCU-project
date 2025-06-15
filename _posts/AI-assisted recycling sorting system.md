@@ -377,7 +377,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 加入範例與邏輯限制
 - 越明確，越好用
 
-### 五、AI輔助回收分類系統程式碼與說明
+## 五、AI輔助回收分類系統程式碼與說明
 <b>Code:</b>
 
 <b> AI-assisted Recycle System（AI 輔助回收系統）</b>
@@ -393,18 +393,18 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 👉 使用 Realtek AMB82-mini 開發板，它是一款內建攝影機、支援 Wi-Fi、具備 AI 應用能力的微控制器。
 
-#### 3.功能說明(Features):
+### 3.功能說明(Features):
 
-##### (一)按下按鈕拍照
+#### (一)按下按鈕拍照
 使用板上的按鈕觸發攝影機拍照。
 
-##### (二)送出照片到 Google Gemini（Vision 模型）分析內容
+#### (二)送出照片到 Google Gemini（Vision 模型）分析內容
 利用 Google Gemini Vision AI 判斷照片裡的東西，例如「這是一個寶特瓶」或「這是一張紙」。
 
-##### (三)把 AI 分析出來的內容，透過 Google TTS 轉成語音並播放
+#### (三)把 AI 分析出來的內容，透過 Google TTS 轉成語音並播放
 使用 Google Text-to-Speech (TTS) 將文字說出來，例如「這是一個可以回收的寶特瓶」。
 
-#### 4.整合專案範例（Project Examples):
+### 4.整合專案範例（Project Examples):
 
 這些是將多個功能整合起來的進階範例：
 
@@ -417,7 +417,7 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 </div>
 
-### 六、AI輔助回收分類系統成果展示
+## 六、AI輔助回收分類系統成果展示
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png"></p>
 <p align="center">圖1 Arduino執行結果</p>

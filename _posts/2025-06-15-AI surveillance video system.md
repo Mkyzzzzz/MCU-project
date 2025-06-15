@@ -1,6 +1,6 @@
 ---
 layout: post
-title: AI-assisted recycling sorting system
+title: AI surveillance video system
 class: 電機4B
 student ID: (01072114)
 name: 張家豪

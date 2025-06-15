@@ -1,9 +1,9 @@
 ---
 layout: post
 title: AI-assisted recycling sorting system
-class: [電機4B]
-student ID: [01072114]
-name: [張家豪]
+class: 電機4B
+student ID: 01072114
+name: 張家豪
 ---
 
 # <p align="center"><p align="center"><span style="font-size:50px;"><b>EdgeAI 微控制應用期末專題實作報告</b></span></p>

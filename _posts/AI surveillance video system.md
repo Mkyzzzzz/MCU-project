@@ -593,7 +593,8 @@ void loop() {
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_1.png"></p>
 <p align="center">圖1 第一次擷取照片</p>
 
-<b>照片對應A1產生文字敘述</b>
+<b>照片對應A1產生文字敘述:</b>
+
 The image shows a close-up, upside-down view of a person's face and upper body. 
 
 
@@ -602,7 +603,8 @@ The person has dark hair, and their face is largely visible, although the featur
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_2.png"></p>
 <p align="center">圖2 第二次擷取照片</p>
 
-<b>照片對應A1產生文字敘述</b>
+<b>照片對應A1產生文字敘述:</b>
+
 The image shows a close-up, upside-down view of a person's head and neck.  The individual has dark hair, and their face is partially visible.  Their eyes are closed, and their mouth is slightly open. The skin tone appears light to medium.  The person is wearing a dark-colored shirt. The background is a plain, light-grey ceiling with some faintly visible light fixtures.
 
 There is no prominent text in the image.
@@ -610,7 +612,8 @@ There is no prominent text in the image.
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_3.png"></p>
 <p align="center">圖3 第三次擷取照片</p>
 
-<b>照片對應A1產生文字敘述</b>
+<b>照片對應A1產生文字敘述:</b>
+
 Here's a description of the image:
 
 The image is a low-angle, fisheye shot taken from the perspective of someone sitting in a chair. The viewpoint is significantly tilted upwards.  The scene appears to be a classroom or lecture hall with white walls and ceiling. 

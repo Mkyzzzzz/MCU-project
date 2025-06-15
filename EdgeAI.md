@@ -1077,7 +1077,7 @@ Board: AMB82-mini（Realtek RTL8735B）
 
 </div>
 
-### 5.AI監視錄影系統
+### 5.看圖說故事
 
 <b>Code:</b>
 ```
@@ -1280,3 +1280,160 @@ void loop()
 }
 ```
 
+#### a.作業目標（Objective）
+使用 AMB82-mini 開發板拍照，將圖片傳送給 Gemini Vision 進行辨識，然後請 AI 根據畫面編寫一段童話故事，再利用 Google TTS 語音播出，讓系統像一位 AI 說故事的機器人。
+
+#### b.開發板與功能（Board & Function）
+開發板：AMB82-mini（Realtek RTL8735B）
+
+👉 這是一塊支援攝影機、Wi-Fi、MP3 播放與 LCD 顯示的智慧開發板，適合用於 AI 與互動式應用。
+
+#### c.功能流程說明（Function Flow）
+##### 壹、按下按鈕拍照
+使用 RTC（實時時鐘） 或 millis() 計時器，每 60 秒觸發一次攝影機拍照。
+##### 貳、傳送照片給 Gemini Vision 並要求生成童話故事
+將圖片發送給 Google Gemini AI，提示詞要求：「根據這張圖片，請說一段童話故事」，例如：
+
+🔸 “Tell a short fairytale based on this image.”
+
+##### 參、將回傳的故事（Text1）交給 Google TTS 並播放
+使用 Google Text-to-Speech 將故事轉為語音，讓裝置播出 AI 創作的童話故事。
+
+#### d.專案範例（Project Examples）：
+
+<div align="center">
+
+|專案名稱	|說明|
+|---------------|----|
+|GenAIVision_TTS_TFT.ino|	整合拍照、Vision 辨識、文字生成、TTS 語音播放與 LCD 顯示等功能的完整範例程式|
+
+</div>
+
+### 6.盲人導航系統
+
+<b>Code:</b>
+
+```
+#include "VideoStream.h"
+#include "QRCodeScanner.h"
+#include "WiFi.h"
+#include <WiFiUdp.h>
+#include "GenAI.h"
+#include "AmebaFatFS.h"
+
+#define CHANNEL 0
+
+// WiFi 設定
+char ssid[] = "hahaha";       // 更改為你的Wi-Fi名稱
+char pass[] = "93034570";   // 更改為你的Wi-Fi密碼
+
+VideoSetting config(CHANNEL);
+QRCodeScanner Scanner;
+GenAI tts;
+AmebaFatFS fs;
+
+String lastResult = "";
+String mp3Filename = "tts_location.mp3";
+
+void initWiFi()
+{
+    WiFi.begin(ssid, pass);
+    Serial.print("Connecting to WiFi");
+    uint32_t startTime = millis();
+
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+        if (millis() - startTime > 8000) {
+            Serial.println("\nWiFi connection failed.");
+            return;
+        }
+    }
+
+    Serial.println("\nWiFi connected. IP address: ");
+    Serial.println(WiFi.localIP());
+}
+
+void setup()
+{
+    Serial.begin(115200);
+    // 初始化相機掃描設定
+    Camera.configVideoChannel(CHANNEL, config);
+    Camera.videoInit();
+    Scanner.StartScanning();
+
+    // 初始化Wi-Fi連線
+    initWiFi();
+}
+
+void loop()
+{
+    delay(1000);  // 每秒檢查一次掃描結果
+    Scanner.GetResultString();
+    Scanner.GetResultLength();
+
+    // 如果有新的掃描結果且與上次不同
+    if (Scanner.ResultString != nullptr && Scanner.ResultLength != 0) {
+        String currentResult = String(Scanner.ResultString);
+
+        if (currentResult != lastResult) {
+            Serial.println("New QR Code Detected: " + currentResult);
+            lastResult = currentResult;
+
+            // 呼叫 Google TTS 產生 mp3
+            tts.googletts(mp3Filename, currentResult, "en-US");
+
+            // 播放 mp3
+            playMP3FromSD(mp3Filename);
+        }
+    }
+}
+
+void playMP3FromSD(String filename)
+{
+    fs.begin();
+    String filepath = String(fs.getRootPath()) + filename;
+    File file = fs.open(filepath, MP3);
+    if (file) {
+        file.setMp3DigitalVol(255); // 可調整音量
+        file.playMp3();
+        file.close();
+    } else {
+        Serial.println("Failed to open MP3 file.");
+    }
+    fs.end();
+}
+```
+#### a.作業目標（Objective）
+使用 AMB82-mini 開發板，透過攝影機掃描 QR Code，取得地點名稱文字，並透過 Google TTS 將文字轉為語音 MP3，再從 SD 卡播放語音，實現「掃碼即播報地點名稱」的導覽功能。
+
+#### b.開發板與功能（Board & Function）
+開發板：AMB82-mini（Realtek RTL8735B）
+
+👉 這是一塊支援攝影機、Wi-Fi、MP3 播放與 LCD 顯示的智慧開發板，適合用於 AI 與互動式應用。
+
+#### c.功能流程說明（Function Flow）
+##### 壹、掃描 QR Code 取得地點名稱文字
+使用攝影機辨識 QR Code，取得儲存在 QR code 中的字串（如 "National Palace Museum"）。
+
+🔍 使用範例：examples > AmebaQR > QRCodeScanner
+##### 貳、傳送照片給 Gemini Vision 並要求生成童話故事
+使用 Google TTS 將上述地點名稱文字轉為語音，並儲存為 MP3 檔案（如 museum.mp3）。
+
+🔊 使用範例：examples > AmebaNN > MultimediaAI > TextToSpeech
+
+##### 參、從 SD 卡播放剛剛生成的 MP3
+播放儲存在 SD 卡中的 MP3 檔案，播報地點名稱。
+
+💾 使用範例：examples > AmebaMultimedia > SDCardPlayMP3
+#### d.專案範例（Project Examples）：
+
+<div align="center">
+	
+|範例名稱|	功能說明|
+|-------|---------------|
+|QRCodeScanner|	利用攝影鏡頭掃描並解析 QR code|
+|TextToSpeech|	呼叫 Google TTS API 將文字轉為 MP3|
+|SDCardPlayMP3|	播放指定路徑下的 MP3 檔案|
+
+</div>

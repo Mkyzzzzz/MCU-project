@@ -833,6 +833,9 @@ In the background, there's a whiteboard, which appears largely blank except for 
 
 The ceiling features three long, rectangular fluorescent light fixtures. There are also various electrical fixtures and wires visible on the wall. A water cooler or large water bottle is partially visible in the upper right corner. The overall setting seems somewhat basic and functional. There is no prominent text present besides what might be on the whiteboard, which is unreadable in the image.
 
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_4.png"></p>
+<p align="center">圖12 SD卡內部存取狀況</p>
+
 <br>
 <br>
 

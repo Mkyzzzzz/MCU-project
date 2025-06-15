@@ -1047,20 +1047,21 @@ void loop() {
 }
 
 ```
-
 #### a.作業目標（Objective）
+
 使用 AMB82-mini 開發板，每分鐘自動拍照一次，將照片送給 Gemini Vision 進行場景描述。如果與上一次的場景描述不同，則將該照片與描述儲存起來（使用日期與時間作為檔案名稱）。若與上次相同，則不儲存，節省空間。
 
 #### b.開發板與功能（Board & Function）
 Board: AMB82-mini（Realtek RTL8735B）
 
 👉 支援攝影機拍照、Wi-Fi 上傳、SD 卡儲存、RTC 實時時鐘功能。
-
 #### c.功能流程說明（Function Flow）
 ##### 壹、每分鐘自動拍照一次
 使用 RTC（實時時鐘） 或 millis() 計時器，每 60 秒觸發一次攝影機拍照。
+
 ##### 貳、照片送出給 Gemini Vision 做場景辨識
 拍下來的影像上傳給 Google Gemini Vision，得到一段文字描述（例如："A park with people walking."）
+
 ##### 參、 比對新回覆與上一次的文字是否相同
 如果相同 → 忽略，不存圖也不存文字
 如果不同 → 儲存該張 JPG 圖片與文字檔，並使用 RTC 的日期與時間命名
@@ -1068,9 +1069,9 @@ Board: AMB82-mini（Realtek RTL8735B）
 #### d.參考範例程式碼（Sample Codes）
 
 <div align="center">
-
+	
 |範例檔名|	說明|
-|--------|----------|
+|-------|-----------|
 |GenAIVision.ino|	拍照並將影像送給 Gemini Vision，取得場景描述文字|
 |CaptureJPG_SDcard.ino|	將攝影機擷取的 JPG 圖片儲存在 SD 卡|
 |examples > AmebaRTC > Simple_RTC.ino|	使用內建 RTC 時鐘模組，獲得目前的時間與日期，用於檔案命名與定時執行|

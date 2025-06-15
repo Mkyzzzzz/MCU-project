@@ -212,23 +212,92 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 
 <div align="center">
 	
-|序號	|引腳標號|	說明|
-|-------|-------|-----------|
-|1	|VCC	|5V/3.3V電源輸入|
-|2	|GND	|接地|
-|3	|CS	|液晶屏片選信號，低電平使能|
-|4	|RESET	|液晶屏重定信號，低電平重定|
-|5	|DC/RS	|液晶屏寄存器/資料選擇信號，低電平：寄存器，高電平：數據|
-|6	|SDI(MOSI)|	SPI匯流排寫資料信號|
-|7	|SCK	|SPI匯流排時鐘信號|
-|8	|LED	|背光控制，高電平點亮，如無需控制則接3.3V常亮|
-|9	|SDO(MISO)	|SPI匯流排讀數據信號，如無需讀取功能則可不接|
-|	|	|(以下為觸摸屏信號線接線，如無需觸摸或者模組本身不帶觸摸功能，可不連接)|
-|10	|T_CLK	|觸摸SPI匯流排時鐘信號|
-|11	|T_CS	|觸摸屏片選信號，低電平使能|
-|12	|T_DIN	|觸摸SPI匯流排輸入|
-|13	|T_DO	|觸摸SPI匯流排輸出|
-|14	|T_IRQ	|觸摸屏中斷信號，檢測到觸摸時為低電平|
+<table>
+  <thead>
+    <tr>
+      <th>序號</th>
+      <th>引腳標號</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>VCC</td>
+      <td>5V/3.3V電源輸入</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>GND</td>
+      <td>接地</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>CS</td>
+      <td>液晶屏片選信號，低電平使能</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>RESET</td>
+      <td>液晶屏重定信號，低電平重定</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>DC/RS</td>
+      <td>液晶屏寄存器/資料選擇信號，低電平：寄存器，高電平：數據</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>SDI(MOSI)</td>
+      <td>SPI匯流排寫資料信號</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>SCK</td>
+      <td>SPI匯流排時鐘信號</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>LED</td>
+      <td>背光控制，高電平點亮，如無需控制則接3.3V常亮</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>SDO(MISO)</td>
+      <td>SPI匯流排讀數據信號，如無需讀取功能則可不接</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>(以下為觸摸屏信號線接線，如無需觸摸或者模組本身不帶觸摸功能，可不連接)</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>T_CLK</td>
+      <td>觸摸SPI匯流排時鐘信號</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>T_CS</td>
+      <td>觸摸屏片選信號，低電平使能</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>T_DIN</td>
+      <td>觸摸SPI匯流排輸入</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>T_DO</td>
+      <td>觸摸SPI匯流排輸出</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>T_IRQ</td>
+      <td>觸摸屏中斷信號，檢測到觸摸時為低電平</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -239,15 +308,44 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 <div align="center">
 	
-|項目	|規格說明|
-|-------|-------|
-|工作電壓	|2.5V ~ 5.5V|
-|最大輸出功率	|3W × 2（於 5V、4Ω 負載）|
-|音訊輸入	|模擬音訊（L/R 左右聲道輸入）|
-|控制方式	|無需 MCU 控制，可直接使用 PWM 或 DAC 輸入|
-|音質表現	|低 THD（總諧波失真）與雜訊，音質清晰|
-|功耗特性	|高效率（>85%），待機電流極低|
-|大小	|模組極小（約 2×2 cm），易於整合至小型裝置|
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>規格說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>工作電壓</td>
+      <td>2.5V ~ 5.5V</td>
+    </tr>
+    <tr>
+      <td>最大輸出功率</td>
+      <td>3W × 2（於 5V、4Ω 負載）</td>
+    </tr>
+    <tr>
+      <td>音訊輸入</td>
+      <td>模擬音訊（L/R 左右聲道輸入）</td>
+    </tr>
+    <tr>
+      <td>控制方式</td>
+      <td>無需 MCU 控制，可直接使用 PWM 或 DAC 輸入</td>
+    </tr>
+    <tr>
+      <td>音質表現</td>
+      <td>低 THD（總諧波失真）與雜訊，音質清晰</td>
+    </tr>
+    <tr>
+      <td>功耗特性</td>
+      <td>高效率（&gt;85%），待機電流極低</td>
+    </tr>
+    <tr>
+      <td>大小</td>
+      <td>模組極小（約 2×2 cm），易於整合至小型裝置</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -256,15 +354,45 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 <div align="center">
 	
-|腳位名稱|	功能說明|
-|-------|--------------|
-|VCC	|電源正極（建議供應 5V）|
-|GND	|電源地|
-|L_IN	|左聲道音訊輸入（模擬/PWM）|
-|R_IN	|右聲道音訊輸入（模擬/PWM）|
-|L_OUT+ / L_OUT−	|左聲道喇叭輸出（差動）|
-|R_OUT+ / R_OUT−	|右聲道喇叭輸出（差動）|
-|EN（可選）	|啟用腳，低電平時模組進入待機模式（部分版本）|
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>規格說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>阻抗（Impedance）</td>
+      <td>4Ω（歐姆）</td>
+    </tr>
+    <tr>
+      <td>額定功率（Rated Power）</td>
+      <td>3W</td>
+    </tr>
+    <tr>
+      <td>響應頻率範圍</td>
+      <td>約 200Hz ~ 10kHz（視型號而定）</td>
+    </tr>
+    <tr>
+      <td>音壓靈敏度</td>
+      <td>約 85 ~ 90 dB（1W/1m）</td>
+    </tr>
+    <tr>
+      <td>直徑尺寸</td>
+      <td>常見尺寸為 36mm / 40mm / 長條型</td>
+    </tr>
+    <tr>
+      <td>結構類型</td>
+      <td>有紙盆、塑膠盆、防塵網、磁鐵等結構</td>
+    </tr>
+    <tr>
+      <td>音圈材質</td>
+      <td>銅線音圈 / 鋁音圈</td>
+    </tr>
+  </tbody>
+</table>
+
 
 </div>
 
@@ -276,15 +404,44 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 <div align="center">
 	
-|項目	|規格說明|
-|-------|--------|
-|阻抗（Impedance）|	4Ω（歐姆）|
-|額定功率（Rated Power）|	3W|
-|響應頻率範圍	|約 200Hz ~ 10kHz（視型號而定）|
-|音壓靈敏度	|約 85 ~ 90 dB（1W/1m）|
-|直徑尺寸	|常見尺寸為 36mm / 40mm / 長條型|
-|結構類型	|有紙盆、塑膠盆、防塵網、磁鐵等結構|
-|音圈材質	|銅線音圈 / 鋁音圈|
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>規格說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>阻抗（Impedance）</td>
+      <td>4Ω（歐姆）</td>
+    </tr>
+    <tr>
+      <td>額定功率（Rated Power）</td>
+      <td>3W</td>
+    </tr>
+    <tr>
+      <td>響應頻率範圍</td>
+      <td>約 200Hz ~ 10kHz（視型號而定）</td>
+    </tr>
+    <tr>
+      <td>音壓靈敏度</td>
+      <td>約 85 ~ 90 dB（1W/1m）</td>
+    </tr>
+    <tr>
+      <td>直徑尺寸</td>
+      <td>常見尺寸為 36mm / 40mm / 長條型</td>
+    </tr>
+    <tr>
+      <td>結構類型</td>
+      <td>有紙盆、塑膠盆、防塵網、磁鐵等結構</td>
+    </tr>
+    <tr>
+      <td>音圈材質</td>
+      <td>銅線音圈 / 鋁音圈</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -439,10 +596,24 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 <div align="center">
 	
-|專案名稱|說明|
-|-------|-----------|
-|GenAIVision_TTS.ino|	拍照 → 使用 Vision AI 分析 → 使用 TTS 播放語音|
-|GenAIVision_TTS_LCD.ino|	拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音|
+<table>
+  <thead>
+    <tr>
+      <th>專案名稱</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GenAIVision_TTS.ino</td>
+      <td>拍照 → 使用 Vision AI 分析 → 使用 TTS 播放語音</td>
+    </tr>
+    <tr>
+      <td>GenAIVision_TTS_LCD.ino</td>
+      <td>拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 

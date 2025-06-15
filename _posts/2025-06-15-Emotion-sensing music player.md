@@ -565,39 +565,28 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 加入範例與邏輯限制
 - 越明確，越好用
 
-## 四、AI輔助回收分類系統專案流程圖
+## 四、情緒感知音樂播放器專案流程圖
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/AI%E8%BC%94%E5%8A%A9%E5%9B%9E%E6%94%B6%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E6%83%85%E7%B7%92%E9%9F%B3%E6%A8%82%E6%84%9F%E7%9F%A5%E6%92%AD%E6%94%BE%E5%99%A8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
 <p align="center">圖8 AI輔助回收分類系統專案流程圖</p>
 
-## 五、AI輔助回收分類系統程式碼與說明
+## 五、情緒感知音樂播放器程式碼與說明
 
 ### 1.作業目標(Objective):
 
-AI-assisted Recycle System
+利用 AI 辨識使用者的情緒，並根據情緒從 SD 卡中已有的音樂檔案中選擇一首合適的歌曲播放，達到情緒療癒或輔助的效果。
 
-👉 使用人工智慧輔助的回收分類系統。主要功能是透過按鈕拍照，AI 辨識影像內容並語音播報，幫助使用者判斷垃圾屬於哪一類。
+### 2.功能與操作流程（Feature Description）:
+#### 壹、拍照並透過 Gemini 辨識情緒
+- 使用攝影機拍下使用者的臉部照片
+- 將照片傳送給 Gemini Vision
+- 提示詞中同時列出 SD 卡中幾個已知的歌曲名稱（例如："happy.mp3", "sad.mp3", "relax.mp3"）
+- 讓 Gemini 根據照片中的情緒判斷應該播放哪一首歌
 
-### 2.硬體設備(Hardware):
+#### 貳、播放 MP3 音樂檔
+根據 AI 回傳的歌曲檔名（如 "sad.mp3"），從 SD 卡 播放對應的 MP3 音樂檔案。
 
-Development Board: AMB82-mini（MCU: Realtek RTL8735B）
-
-👉 使用 Realtek AMB82-mini 開發板，它是一款內建攝影機、支援 Wi-Fi、具備 AI 應用能力的微控制器。
-
-### 3.功能說明(Features):
-
-#### (一)按下按鈕拍照
-使用板上的按鈕觸發攝影機拍照。
-
-#### (二)送出照片到 Google Gemini（Vision 模型）分析內容
-利用 Google Gemini Vision AI 判斷照片裡的東西，例如「這是一個寶特瓶」或「這是一張紙」。
-
-#### (三)把 AI 分析出來的內容，透過 Google TTS 轉成語音並播放
-使用 Google Text-to-Speech (TTS) 將文字說出來，例如「這是一個可以回收的寶特瓶」。
-
-### 4.整合專案範例（Project Examples):
-
-這些是將多個功能整合起來的進階範例：
+### 3.相關功能範例（Functional Examples）:
 
 <div align="center">
 	
@@ -623,9 +612,200 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 </div>
 
 <b>Code:</b>
+```
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include "GenAI.h"
+#include "VideoStream.h"
+#include "SPI.h"
+#include "AmebaILI9341.h"
+#include "TJpg_Decoder.h" // Include the jpeg decoder library
+#include "AmebaFatFS.h"
 
+String openAI_key = "";               // Your generated OpenAI API key here
+String Gemini_key = "AIzaSyCCwbt-JZVF_sdc2Eos6A8KipWZmjupvQk";               // Your generated Gemini API key here
+String Llama_key = "";                // Your generated Llama API key here
+char wifi_ssid[] = "hahaha";    // Your network SSID (name)
+char wifi_pass[] = "93034570";        // Your network password
 
-## 六、AI輔助回收分類系統成果展示
+WiFiSSLClient client;
+GenAI llm;
+GenAI tts;
+
+AmebaFatFS fs;
+String mp3Filename = "test_play_google_tts.mp3";
+
+VideoSetting config(768, 768, CAM_FPS, VIDEO_JPEG, 1);
+#define CHANNEL 0
+
+uint32_t img_addr = 0;
+uint32_t img_len = 0;
+const int buttonPin = 1;          // The number of the pushbutton pin
+
+String prompt_msg = "請問這張圖中的情緒是什麼? 根據這個情緒,sad推薦Mood,angry推薦Payphone,happy推薦OMG。";
+
+#define TFT_RESET 5
+#define TFT_DC    4
+#define TFT_CS    SPI_SS
+
+AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);
+
+#define ILI9341_SPI_FREQUENCY 20000000
+
+bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap)
+{
+    tft.drawBitmap(x, y, w, h, bitmap);
+    return 1;
+}
+
+void initWiFi()
+{
+    for (int i = 0; i < 2; i++) {
+        WiFi.begin(wifi_ssid, wifi_pass);
+
+        delay(1000);
+        Serial.println("");
+        Serial.print("Connecting to ");
+        Serial.println(wifi_ssid);
+
+        uint32_t StartTime = millis();
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(500);
+            if ((StartTime + 5000) < millis()) {
+                break;
+            }
+        }
+
+        if (WiFi.status() == WL_CONNECTED) {
+            Serial.println("");
+            Serial.println("STAIP address: ");
+            Serial.println(WiFi.localIP());
+            Serial.println("");
+            break;
+        }
+    }
+}
+
+void init_tft()
+{
+    tft.begin();
+    tft.setRotation(2);
+    tft.clr();
+    tft.setCursor(0, 0);
+    tft.setForeground(ILI9341_GREEN);
+    tft.setFontSize(2);
+}
+
+void setup()
+{
+    Serial.begin(115200);
+    SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);
+    initWiFi();
+
+    config.setRotation(0);
+    Camera.configVideoChannel(CHANNEL, config);
+    Camera.videoInit();
+    Camera.channelBegin(CHANNEL);
+    Camera.printInfo();
+    
+    pinMode(buttonPin, INPUT);
+    pinMode(LED_B, OUTPUT);
+
+    init_tft();
+    tft.println("GenAIVision_TTS_TFT");
+
+    TJpgDec.setJpgScale(2); 
+    TJpgDec.setCallback(tft_output);
+}
+
+void loop()
+{
+    tft.setCursor(0, 1);
+    tft.println("Press button to capture image");
+
+    if ((digitalRead(buttonPin)) == 1) {
+        tft.println("capture image");
+
+        // Blink LED to indicate image capture
+        for (int count = 0; count < 3; count++) {
+            digitalWrite(LED_B, HIGH);
+            delay(500);
+            digitalWrite(LED_B, LOW);
+            delay(500);
+        }
+
+        // Capture Image
+        Camera.getImage(0, &img_addr, &img_len); 
+
+        // JPEG Decode & Display
+        TJpgDec.getJpgSize(0, 0, (uint8_t *)img_addr, img_len);
+        TJpgDec.drawJpg(0, 0, (uint8_t *)img_addr, img_len);
+
+        // Send Image to Gemini Vision for Emotion Detection
+        String text = llm.geminivision(Gemini_key, "gemini-2.0-flash", prompt_msg, img_addr, img_len, client);
+        Serial.println(text);
+
+        // Extract Emotion from Gemini response
+        String emotion = extractEmotionFromResponse(text); // A function that extracts the emotion from Gemini's response
+        Serial.println("Detected Emotion: " + emotion);
+
+        // Display Emotion on TFT screen
+        tft.setCursor(0, 30);
+        tft.println("Detected Emotion: " + emotion);
+
+        // Based on emotion, recommend a song
+        String songRecommendation = recommendSongBasedOnEmotion(emotion);
+        tft.setCursor(0, 50);
+        tft.println("Recommended Song: " + songRecommendation);
+
+        // Play Text-To-Speech for recommendation
+        tft.clr();
+        tft.setCursor(0, 0);    
+        tft.println("Text-To-Speech");
+        tts.googletts(mp3Filename, "推薦歌曲: " + songRecommendation, "zh-TW");
+        delay(500);
+        sdPlayMP3(songRecommendation);  // Play the recommended song
+    }
+}
+
+// Function to extract emotion from Gemini's response
+String extractEmotionFromResponse(String response)
+{
+    // This is a simple placeholder, assuming Gemini responds with an emotion directly.
+    // You might need to parse the response more thoroughly based on Gemini's exact output format.
+    if (response.indexOf("happy") != -1) return "happy";
+    if (response.indexOf("sad") != -1) return "sad";
+    if (response.indexOf("angry") != -1) return "angry";
+    return "neutral";  // Default emotion if not detected
+}
+
+// Function to recommend a song based on detected emotion
+String recommendSongBasedOnEmotion(String emotion)
+{
+    // Modify this function to include your SD card song list based on emotions
+    if (emotion == "happy") return "OMG.mp3";
+    if (emotion == "sad") return "Mood.mp3";
+    if (emotion == "angry") return "Payphone.mp3";
+    return "neutral_song.mp3";  // Default song for neutral emotions
+}
+
+void sdPlayMP3(String filename)
+{
+    fs.begin();
+    String filepath = String(fs.getRootPath()) + filename;
+    File file = fs.open(filepath, MP3);
+    if (!file) {
+        Serial.println("Failed to open MP3 file!");
+        return;
+    }
+    file.setMp3DigitalVol(175);  // Set volume level
+    file.playMp3();  // Start playing the MP3
+    file.close();
+    fs.end();
+}
+```
+
+## 六、情緒感知音樂播放器成果展示
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png?raw=true"></p>
 <p align="center">圖9 Arduino執行結果</p>

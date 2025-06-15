@@ -416,3 +416,9 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 |GenAIVision_TTS_LCD.ino|	拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音|
 
 </div>
+
+<br>
+<br>
+
+*This site was last updated {{ site.time | date: "%B %d, %Y" }}.*
+

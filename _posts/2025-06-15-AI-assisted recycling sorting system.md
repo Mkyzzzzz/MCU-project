@@ -11,7 +11,7 @@ name: 張家豪
 ## 一、EdgeAI MCU 系統架構
 本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-mini%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-mini%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E5%9C%96.png?raw=true"></p>
 <p align="center">圖1 AMB82-Mini系統架構圖</p>
 
 - AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
@@ -29,13 +29,11 @@ name: 張家豪
 模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。
 
 ### 1. AMB82-mini
-<p align="center">
-  <img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png?raw=true" width="70%">
-</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png?raw=true"></p>
 <p align="center">圖2 AMB82-Mini實體外觀圖</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%963.%20AMB82-Mini%20%E9%96%8B%E7%99%BC%E6%9D%BF%E5%89%8D%E5%BE%8C%E8%A6%96%E5%9C%96%E8%88%87%20GPIO%20%E8%85%B3%E4%BD%8D%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E5%9C%96.png">圖3 AMB82-Mini主要介面說明圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%963.%20AMB82-Mini%20%E9%96%8B%E7%99%BC%E6%9D%BF%E5%89%8D%E5%BE%8C%E8%A6%96%E5%9C%96%E8%88%87%20GPIO%20%E8%85%B3%E4%BD%8D%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E5%9C%96.png?raw=true">圖3 AMB82-Mini主要介面說明圖</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
-<p align="center">圖4 AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖</p>
+<p align="center?raw=true">圖4 AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖</p>
 
 圖1展示了 AMB82-Mini 的實體外觀，其中左側為搭載鏡頭的主開發板，右側為擴充模組，兩者皆具備豐富的 GPIO 排針與無線通訊模組。該圖有助於辨識實體接腳位置、連接模組佈局與實體安裝方向，是開發初期理解板子配置的第一步。鏡頭模組的存在也預示了該開發板具備即時影像擷取與傳送的能力，對於後續進行圖像辨識等 AI 應用至關重要。
       
@@ -154,9 +152,9 @@ PF9：LED_BUILTIN / LED_B（藍燈）、PE6：LED_G（綠燈）
 ### 2. ILI9341 TFT LCD
 ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD 顯示模組，搭載 240×320 像素解析度 與 SPI 通訊介面。該模組內建 ILI9341 顯示驅動 IC，支援 262K 色彩顯示與圖形加速功能，能夠顯示影像、文字、圖形介面，常見於智慧手持裝置、嵌入式儀表與 IoT 應用。
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png?raw=true"></p>
 <p align="center">圖5 ILI9341 TFT LCD實體外觀圖</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png?raw=true"></p>
 <p align="center">圖6 AMB82 MINI and QVGA TFT LCD 接線圖</p>
 
 
@@ -421,11 +419,11 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 ## 六、AI輔助回收分類系統成果展示
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png?raw=true"></p>
 <p align="center">圖1 Arduino執行結果</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png?raw=true"></p>
 <p align="center">圖2 AI判定結果</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png?raw=true"></p>
 <p align="center">圖3 測試所使用的照片</p>
 
 <br>

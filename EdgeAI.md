@@ -1076,3 +1076,207 @@ Board: AMB82-mini（Realtek RTL8735B）
 |examples > AmebaRTC > Simple_RTC.ino|	使用內建 RTC 時鐘模組，獲得目前的時間與日期，用於檔案命名與定時執行|
 
 </div>
+
+### 5.AI監視錄影系統
+
+<b>Code:</b>
+```
+/*
+Fairytale Teller on AMB82-Mini
+功能:
+- 按下按鈕拍照
+- 傳送影像至 Gemini Vision，請 AI 生成童話故事（中文）
+- 將故事分割為多個短句
+- 逐句轉成語音（Google TTS）並播放
+*/
+
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include "GenAI.h"
+#include "VideoStream.h"
+#include "SPI.h"
+#include "AmebaILI9341.h"
+#include "TJpg_Decoder.h"
+#include "AmebaFatFS.h"
+
+String openAI_key = "";               
+String Gemini_key = "AIzaSyCCwbt-JZVF_sdc2Eos6A8KipWZmjupvQk";               
+String Llama_key = "";               
+char wifi_ssid[] = "hahaha";    
+char wifi_pass[] = "93034570";       
+
+WiFiSSLClient client;
+GenAI llm;
+GenAI tts;
+
+AmebaFatFS fs;
+String mp3Filename = "tts_part.mp3";
+
+VideoSetting config(768, 768, CAM_FPS, VIDEO_JPEG, 1);
+#define CHANNEL 0
+
+uint32_t img_addr = 0;
+uint32_t img_len = 0;
+const int buttonPin = 1;
+
+String prompt_msg = "請看圖說一個童話故事，請用中文敘述，不要太短。";
+
+#define TFT_RESET 5
+#define TFT_DC    4
+#define TFT_CS    SPI_SS
+
+AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);
+#define ILI9341_SPI_FREQUENCY 20000000
+
+bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap)
+{
+    tft.drawBitmap(x, y, w, h, bitmap);
+    return 1;
+}
+
+void initWiFi()
+{
+    for (int i = 0; i < 2; i++) {
+        WiFi.begin(wifi_ssid, wifi_pass);
+        delay(1000);
+        Serial.println("Connecting to WiFi...");
+        uint32_t StartTime = millis();
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(500);
+            if ((StartTime + 5000) < millis()) break;
+        }
+        if (WiFi.status() == WL_CONNECTED) {
+            Serial.println("Connected, IP address: ");
+            Serial.println(WiFi.localIP());
+            break;
+        }
+    }
+}
+
+void init_tft()
+{
+    tft.begin();
+    tft.setRotation(2);
+    tft.clr();
+    tft.setCursor(0, 0);
+    tft.setForeground(ILI9341_GREEN);
+    tft.setFontSize(2);
+}
+
+// 最大句數
+const int MAX_SENTENCES = 20;
+
+// 將故事依「。」或「，」斷句
+int splitTextForTTS(String text, String output[], int maxLen = 100) {
+    int count = 0;
+    int start = 0;
+    while (start < text.length() && count < MAX_SENTENCES) {
+        int end = text.indexOf("。", start);
+        if (end == -1) {
+            output[count++] = text.substring(start);
+            break;
+        }
+        String sentence = text.substring(start, end + 1);
+        if (sentence.length() <= maxLen) {
+            output[count++] = sentence;
+        } else {
+            int subStart = start;
+            while (subStart < end && count < MAX_SENTENCES) {
+                int subEnd = text.indexOf("，", subStart);
+                if (subEnd == -1 || subEnd > end) {
+                    output[count++] = text.substring(subStart, end + 1);
+                    break;
+                }
+                output[count++] = text.substring(subStart, subEnd + 1);
+                subStart = subEnd + 1;
+            }
+        }
+        start = end + 1;
+    }
+    return count;
+}
+
+void sdPlayMP3(String filename)
+{
+    fs.begin();
+    String filepath = String(fs.getRootPath()) + filename;
+    File file = fs.open(filepath, MP3);
+    if (!file) {
+        Serial.println("Failed to open MP3 file: " + filepath);
+        fs.end();
+        return;
+    }
+    file.setMp3DigitalVol(175);
+    file.playMp3();  // 無參數呼叫
+
+    delay(3000); // 等待約3秒，視MP3長度可自行調整
+
+    file.close();
+    fs.end();
+}
+
+void setup()
+{
+    Serial.begin(115200);
+    SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);
+    initWiFi();
+
+    config.setRotation(0);
+    Camera.configVideoChannel(CHANNEL, config);
+    Camera.videoInit();
+    Camera.channelBegin(CHANNEL);
+    Camera.printInfo();
+
+    pinMode(buttonPin, INPUT);
+    pinMode(LED_B, OUTPUT);
+
+    init_tft();
+    tft.println("Fairytale Teller");
+    TJpgDec.setJpgScale(2);
+    TJpgDec.setCallback(tft_output);
+}
+
+void loop()
+{
+    tft.setCursor(0, 1);
+    tft.println("Press button to tell story");
+    if ((digitalRead(buttonPin)) == 1) {
+        tft.println("Capturing image...");
+        for (int count = 0; count < 3; count++) {
+            digitalWrite(LED_B, HIGH);
+            delay(500);
+            digitalWrite(LED_B, LOW);
+            delay(500);
+        }
+
+        Camera.getImage(0, &img_addr, &img_len); 
+        TJpgDec.getJpgSize(0, 0, (uint8_t *)img_addr, img_len);
+        TJpgDec.drawJpg(0, 0, (uint8_t *)img_addr, img_len);
+
+        tft.clr();
+        tft.setCursor(0, 0);
+        tft.println("Talking...");
+
+        String story = llm.geminivision(Gemini_key, "gemini-2.0-flash", prompt_msg, img_addr, img_len, client);
+        Serial.println("Story:");
+        Serial.println(story);
+
+        String parts[MAX_SENTENCES];
+        int numParts = splitTextForTTS(story, parts);
+
+        if (numParts > 0) {
+            for (int i = 0; i < numParts; i++) {
+                String mp3Part = "tts_" + String(i) + ".mp3";
+                Serial.print("TTS Part "); Serial.print(i); Serial.print(": ");
+                Serial.println(parts[i]);
+                tts.googletts(mp3Part, parts[i], "zh-TW");
+                delay(500); // 確保下載完畢
+                sdPlayMP3(mp3Part);
+            }
+        } else {
+            Serial.println("No valid text to speak.");
+        }
+    }
+}
+```
+

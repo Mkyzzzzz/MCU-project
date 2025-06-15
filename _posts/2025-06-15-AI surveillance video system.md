@@ -1,17 +1,17 @@
 ---
 layout: post
-title: AI surveillance video system
+title: AI-assisted recycling sorting system
 class: 電機4B
 student ID: (01072114)
 name: 張家豪
 ---
 
-# <p align="center"><p align="center"><span style="font-size:50px;"><b>EdgeAI 微控制應用期末專題實作報告</b></span></p>
+# <span style="font-size:50px;"><b>EdgeAI 微控制應用期末專題實作報告</b></span>
 
 ## 一、EdgeAI MCU 系統架構
 本系統由 AMB82-mini 為主控核心，搭配多個模組實現人工智慧邊緣運算應用。系統整體架構如下：
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-mini%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-mini%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E5%9C%96.png?raw=true"></p>
 <p align="center">圖1 AMB82-Mini系統架構圖</p>
 
 - AMB82-mini：具備雙核心 CPU 及 Wi-Fi 功能，支援 TensorFlow Lite Micro 與 OpenAI API。
@@ -29,12 +29,11 @@ name: 張家豪
 模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。
 
 ### 1. AMB82-mini
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%961.%20AMB82-Mini%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png?raw=true"></p>
 <p align="center">圖2 AMB82-Mini實體外觀圖</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%962.%20AMB82-Mini%E4%B8%BB%E8%A6%81%E4%BB%8B%E9%9D%A2%E8%AA%AA%E6%98%8E%E5%9C%96.png"></p>
-<p align="center">圖3 AMB82-Mini主要介面說明圖</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%963.%20AMB82-Mini%20%E9%96%8B%E7%99%BC%E6%9D%BF%E5%89%8D%E5%BE%8C%E8%A6%96%E5%9C%96%E8%88%87%20GPIO%20%E8%85%B3%E4%BD%8D%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E5%9C%96.png"></p>
-<p align="center">圖4 AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%963.%20AMB82-Mini%20%E9%96%8B%E7%99%BC%E6%9D%BF%E5%89%8D%E5%BE%8C%E8%A6%96%E5%9C%96%E8%88%87%20GPIO%20%E8%85%B3%E4%BD%8D%E5%8A%9F%E8%83%BD%E5%B0%8D%E6%87%89%E5%9C%96.png?raw=true">圖3 AMB82-Mini主要介面說明圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
+<p align="center?raw=true">圖4 AMB82-Mini 開發板前後視圖與 GPIO 腳位功能對應圖</p>
 
 圖1展示了 AMB82-Mini 的實體外觀，其中左側為搭載鏡頭的主開發板，右側為擴充模組，兩者皆具備豐富的 GPIO 排針與無線通訊模組。該圖有助於辨識實體接腳位置、連接模組佈局與實體安裝方向，是開發初期理解板子配置的第一步。鏡頭模組的存在也預示了該開發板具備即時影像擷取與傳送的能力，對於後續進行圖像辨識等 AI 應用至關重要。
       
@@ -153,9 +152,9 @@ PF9：LED_BUILTIN / LED_B（藍燈）、PE6：LED_G（綠燈）
 ### 2. ILI9341 TFT LCD
 ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD 顯示模組，搭載 240×320 像素解析度 與 SPI 通訊介面。該模組內建 ILI9341 顯示驅動 IC，支援 262K 色彩顯示與圖形加速功能，能夠顯示影像、文字、圖形介面，常見於智慧手持裝置、嵌入式儀表與 IoT 應用。
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png?raw=true"></p>
 <p align="center">圖5 ILI9341 TFT LCD實體外觀圖</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png?raw=true"></p>
 <p align="center">圖6 AMB82 MINI and QVGA TFT LCD 接線圖</p>
 
 
@@ -163,16 +162,48 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 
 <div align="center">
 	
-| 項目    | 說明                                          |
-| --------|----------------------------------------------|
-| 顯示尺寸 | 2.4 吋 / 2.8 吋 TFT LCD                      |
-| 解析度   | 240 × 320 pixels                             |
-| 控制晶片 | ILI9341                                      |
-| 通訊介面 | SPI（支援 4 線序列通訊，亦可設定為 8-bit 並列） |
-| 顯示色彩 | 262K（18-bit）真彩顯示                        |
-| 操作電壓 | 3.3V（邏輯電平，部分模組具備 5V 轉接）          |
-| 觸控功能 | 可選（部分模組具電阻式/電容式觸控，搭配 XPT2046）|
-| 背光模組 | LED 背光，PWM 可調整亮度                       |
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>顯示尺寸</td>
+      <td>2.4 吋 / 2.8 吋 TFT LCD</td>
+    </tr>
+    <tr>
+      <td>解析度</td>
+      <td>240 × 320 pixels</td>
+    </tr>
+    <tr>
+      <td>控制晶片</td>
+      <td>ILI9341</td>
+    </tr>
+    <tr>
+      <td>通訊介面</td>
+      <td>SPI（支援 4 線序列通訊，亦可設定為 8-bit 並列）</td>
+    </tr>
+    <tr>
+      <td>顯示色彩</td>
+      <td>262K（18-bit）真彩顯示</td>
+    </tr>
+    <tr>
+      <td>操作電壓</td>
+      <td>3.3V（邏輯電平，部分模組具備 5V 轉接）</td>
+    </tr>
+    <tr>
+      <td>觸控功能</td>
+      <td>可選（部分模組具電阻式/電容式觸控，搭配 XPT2046）</td>
+    </tr>
+    <tr>
+      <td>背光模組</td>
+      <td>LED 背光，PWM 可調整亮度</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -181,23 +212,92 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 
 <div align="center">
 	
-|序號	|引腳標號|	說明|
-|-------|-------|-----------|
-|1	|VCC	|5V/3.3V電源輸入|
-|2	|GND	|接地|
-|3	|CS	|液晶屏片選信號，低電平使能|
-|4	|RESET	|液晶屏重定信號，低電平重定|
-|5	|DC/RS	|液晶屏寄存器/資料選擇信號，低電平：寄存器，高電平：數據|
-|6	|SDI(MOSI)|	SPI匯流排寫資料信號|
-|7	|SCK	|SPI匯流排時鐘信號|
-|8	|LED	|背光控制，高電平點亮，如無需控制則接3.3V常亮|
-|9	|SDO(MISO)	|SPI匯流排讀數據信號，如無需讀取功能則可不接|
-|	|	|(以下為觸摸屏信號線接線，如無需觸摸或者模組本身不帶觸摸功能，可不連接)|
-|10	|T_CLK	|觸摸SPI匯流排時鐘信號|
-|11	|T_CS	|觸摸屏片選信號，低電平使能|
-|12	|T_DIN	|觸摸SPI匯流排輸入|
-|13	|T_DO	|觸摸SPI匯流排輸出|
-|14	|T_IRQ	|觸摸屏中斷信號，檢測到觸摸時為低電平|
+<table>
+  <thead>
+    <tr>
+      <th>序號</th>
+      <th>引腳標號</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>VCC</td>
+      <td>5V/3.3V電源輸入</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>GND</td>
+      <td>接地</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>CS</td>
+      <td>液晶屏片選信號，低電平使能</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>RESET</td>
+      <td>液晶屏重定信號，低電平重定</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>DC/RS</td>
+      <td>液晶屏寄存器/資料選擇信號，低電平：寄存器，高電平：數據</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>SDI(MOSI)</td>
+      <td>SPI匯流排寫資料信號</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>SCK</td>
+      <td>SPI匯流排時鐘信號</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>LED</td>
+      <td>背光控制，高電平點亮，如無需控制則接3.3V常亮</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>SDO(MISO)</td>
+      <td>SPI匯流排讀數據信號，如無需讀取功能則可不接</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>(以下為觸摸屏信號線接線，如無需觸摸或者模組本身不帶觸摸功能，可不連接)</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>T_CLK</td>
+      <td>觸摸SPI匯流排時鐘信號</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>T_CS</td>
+      <td>觸摸屏片選信號，低電平使能</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>T_DIN</td>
+      <td>觸摸SPI匯流排輸入</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>T_DO</td>
+      <td>觸摸SPI匯流排輸出</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>T_IRQ</td>
+      <td>觸摸屏中斷信號，檢測到觸摸時為低電平</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -208,15 +308,44 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 <div align="center">
 	
-|項目	|規格說明|
-|-------|-------|
-|工作電壓	|2.5V ~ 5.5V|
-|最大輸出功率	|3W × 2（於 5V、4Ω 負載）|
-|音訊輸入	|模擬音訊（L/R 左右聲道輸入）|
-|控制方式	|無需 MCU 控制，可直接使用 PWM 或 DAC 輸入|
-|音質表現	|低 THD（總諧波失真）與雜訊，音質清晰|
-|功耗特性	|高效率（>85%），待機電流極低|
-|大小	|模組極小（約 2×2 cm），易於整合至小型裝置|
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>規格說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>工作電壓</td>
+      <td>2.5V ~ 5.5V</td>
+    </tr>
+    <tr>
+      <td>最大輸出功率</td>
+      <td>3W × 2（於 5V、4Ω 負載）</td>
+    </tr>
+    <tr>
+      <td>音訊輸入</td>
+      <td>模擬音訊（L/R 左右聲道輸入）</td>
+    </tr>
+    <tr>
+      <td>控制方式</td>
+      <td>無需 MCU 控制，可直接使用 PWM 或 DAC 輸入</td>
+    </tr>
+    <tr>
+      <td>音質表現</td>
+      <td>低 THD（總諧波失真）與雜訊，音質清晰</td>
+    </tr>
+    <tr>
+      <td>功耗特性</td>
+      <td>高效率（&gt;85%），待機電流極低</td>
+    </tr>
+    <tr>
+      <td>大小</td>
+      <td>模組極小（約 2×2 cm），易於整合至小型裝置</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -225,15 +354,45 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 <div align="center">
 	
-|腳位名稱|	功能說明|
-|-------|--------------|
-|VCC	|電源正極（建議供應 5V）|
-|GND	|電源地|
-|L_IN	|左聲道音訊輸入（模擬/PWM）|
-|R_IN	|右聲道音訊輸入（模擬/PWM）|
-|L_OUT+ / L_OUT−	|左聲道喇叭輸出（差動）|
-|R_OUT+ / R_OUT−	|右聲道喇叭輸出（差動）|
-|EN（可選）	|啟用腳，低電平時模組進入待機模式（部分版本）|
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>規格說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>阻抗（Impedance）</td>
+      <td>4Ω（歐姆）</td>
+    </tr>
+    <tr>
+      <td>額定功率（Rated Power）</td>
+      <td>3W</td>
+    </tr>
+    <tr>
+      <td>響應頻率範圍</td>
+      <td>約 200Hz ~ 10kHz（視型號而定）</td>
+    </tr>
+    <tr>
+      <td>音壓靈敏度</td>
+      <td>約 85 ~ 90 dB（1W/1m）</td>
+    </tr>
+    <tr>
+      <td>直徑尺寸</td>
+      <td>常見尺寸為 36mm / 40mm / 長條型</td>
+    </tr>
+    <tr>
+      <td>結構類型</td>
+      <td>有紙盆、塑膠盆、防塵網、磁鐵等結構</td>
+    </tr>
+    <tr>
+      <td>音圈材質</td>
+      <td>銅線音圈 / 鋁音圈</td>
+    </tr>
+  </tbody>
+</table>
+
 
 </div>
 
@@ -245,15 +404,44 @@ PAM8403 是一款低功耗、高效率的 D 類音訊放大器晶片，可提供
 
 <div align="center">
 	
-|項目	|規格說明|
-|-------|--------|
-|阻抗（Impedance）|	4Ω（歐姆）|
-|額定功率（Rated Power）|	3W|
-|響應頻率範圍	|約 200Hz ~ 10kHz（視型號而定）|
-|音壓靈敏度	|約 85 ~ 90 dB（1W/1m）|
-|直徑尺寸	|常見尺寸為 36mm / 40mm / 長條型|
-|結構類型	|有紙盆、塑膠盆、防塵網、磁鐵等結構|
-|音圈材質	|銅線音圈 / 鋁音圈|
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>規格說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>阻抗（Impedance）</td>
+      <td>4Ω（歐姆）</td>
+    </tr>
+    <tr>
+      <td>額定功率（Rated Power）</td>
+      <td>3W</td>
+    </tr>
+    <tr>
+      <td>響應頻率範圍</td>
+      <td>約 200Hz ~ 10kHz（視型號而定）</td>
+    </tr>
+    <tr>
+      <td>音壓靈敏度</td>
+      <td>約 85 ~ 90 dB（1W/1m）</td>
+    </tr>
+    <tr>
+      <td>直徑尺寸</td>
+      <td>常見尺寸為 36mm / 40mm / 長條型</td>
+    </tr>
+    <tr>
+      <td>結構類型</td>
+      <td>有紙盆、塑膠盆、防塵網、磁鐵等結構</td>
+    </tr>
+    <tr>
+      <td>音圈材質</td>
+      <td>銅線音圈 / 鋁音圈</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -350,10 +538,12 @@ file.close();
 - 定時器 / RTC 控制週期性觸發
 - 檢查 AI 回傳是否與前次不同，決定是否更新畫面/播放
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/GenAI%20%E7%B7%A8%E7%A2%BC%E8%A8%AD%E8%A8%88%E6%B5%81%E7%A8%8B.png"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/GenAI%20%E7%B7%A8%E7%A2%BC%E8%A8%AD%E8%A8%88%E6%B5%81%E7%A8%8B.png?raw=true"></p>
 <p align="center">圖7 GenAI 編碼設計流程</p>
 
-## 四、程式生成提示語設計（Prompts for Code Generation）
+## 三、專案流程圖
+
+## 四、程式生成提示語設計
 
 程式生成提示語設計（Prompts for Code Generation）是一門設計如何清楚、有效地向 AI 模型（如 GPT、Gemini、Copilot 等）描述你想要產生的程式碼的技巧。良好的提示語可以幫助你獲得準確、可執行、易維護的程式碼。
 
@@ -377,8 +567,10 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 加入範例與邏輯限制
 - 越明確，越好用
 
-## 五、AI 監視錄影系統
-### 1.作業目標（Objective）
+## 五、AI監視錄影系統程式碼與說明
+
+### 1.作業目標(Objective):
+
 使用 AMB82-mini 開發板，每分鐘自動拍照一次，將照片送給 Gemini Vision 進行場景描述。如果與上一次的場景描述不同，則將該照片與描述儲存起來（使用日期與時間作為檔案名稱）。若與上次相同，則不儲存，節省空間。
 
 ### 2.開發板與功能（Board & Function）
@@ -396,15 +588,32 @@ Board: AMB82-mini（Realtek RTL8735B）
 如果相同 → 忽略，不存圖也不存文字
 如果不同 → 儲存該張 JPG 圖片與文字檔，並使用 RTC 的日期與時間命名
 
-### 4.參考範例程式碼（Sample Codes）
+### d.參考範例程式碼（Sample Codes）
 
 <div align="center">
 	
-|範例檔名|	說明|
-|-------|-----------|
-|GenAIVision.ino|	拍照並將影像送給 Gemini Vision，取得場景描述文字|
-|CaptureJPG_SDcard.ino|	將攝影機擷取的 JPG 圖片儲存在 SD 卡|
-|examples > AmebaRTC > Simple_RTC.ino|	使用內建 RTC 時鐘模組，獲得目前的時間與日期，用於檔案命名與定時執行|
+<table>
+  <thead>
+    <tr>
+      <th>範例檔名</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GenAIVision.ino</td>
+      <td>拍照並將影像送給 Gemini Vision，取得場景描述文字</td>
+    </tr>
+    <tr>
+      <td>CaptureJPG_SDcard.ino</td>
+      <td>將攝影機擷取的 JPG 圖片儲存在 SD 卡</td>
+    </tr>
+    <tr>
+      <td>examples &gt; AmebaRTC &gt; Simple_RTC.ino</td>
+      <td>使用內建 RTC 時鐘模組，獲得目前的時間與日期，用於檔案命名與定時執行</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -590,29 +799,29 @@ void loop() {
 
 ## 六、AI監視錄影系統成果展示
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_1.png"></p>
-<p align="center">圖1 第一次擷取照片</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_1.png?raw=true"></p>
+<p align="center">圖9 第一次擷取照片</p>
 
-<b>照片對應A1產生文字敘述:</b>
+<b>照片所對應的AI產生文字敘述:</b>
 
 The image shows a close-up, upside-down view of a person's face and upper body. 
 
 
 The person has dark hair, and their face is largely visible, although the features are somewhat distorted due to the angle. Their skin tone is light to medium. They are wearing a dark-colored, possibly black, t-shirt with the word "PINETI" printed on it in white, upside down from the viewer's perspective. The background is a plain, light-grey or off-white wall or ceiling.  The overall impression is a casual, informal self-portrait taken from an unusual angle.
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_2.png"></p>
-<p align="center">圖2 第二次擷取照片</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_2.png?raw=true"></p>
+<p align="center">圖10 第二次擷取照片</p>
 
-<b>照片對應A1產生文字敘述:</b>
+<b>照片所對應的AI產生文字敘述:</b>
 
 The image shows a close-up, upside-down view of a person's head and neck.  The individual has dark hair, and their face is partially visible.  Their eyes are closed, and their mouth is slightly open. The skin tone appears light to medium.  The person is wearing a dark-colored shirt. The background is a plain, light-grey ceiling with some faintly visible light fixtures.
 
 There is no prominent text in the image.
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_3.png"></p>
-<p align="center">圖3 第三次擷取照片</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_3.png?raw=true"></p>
+<p align="center">圖11 第三次擷取照片</p>
 
-<b>照片對應A1產生文字敘述:</b>
+<b>照片所對應的AI產生文字敘述:</b>
 
 Here's a description of the image:
 
@@ -623,9 +832,6 @@ The immediate foreground shows the legs and lower body of the person taking the 
 In the background, there's a whiteboard, which appears largely blank except for some faint markings. A person is seen sitting at a desk in front of this whiteboard, appearing to be giving a presentation or lecture.  The person's face is partially visible. 
 
 The ceiling features three long, rectangular fluorescent light fixtures. There are also various electrical fixtures and wires visible on the wall. A water cooler or large water bottle is partially visible in the upper right corner. The overall setting seems somewhat basic and functional. There is no prominent text present besides what might be on the whiteboard, which is unreadable in the image.
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_4.png"></p>
-<p align="center">圖4 SD卡存取狀況</p>
 
 <br>
 <br>

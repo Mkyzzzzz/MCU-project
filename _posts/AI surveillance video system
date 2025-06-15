@@ -1,0 +1,29 @@
+
+#### a.作業目標（Objective）
+使用 AMB82-mini 開發板拍照，將圖片傳送給 Gemini Vision 進行辨識，然後請 AI 根據畫面編寫一段童話故事，再利用 Google TTS 語音播出，讓系統像一位 AI 說故事的機器人。
+
+#### b.開發板與功能（Board & Function）
+開發板：AMB82-mini（Realtek RTL8735B）
+
+👉 這是一塊支援攝影機、Wi-Fi、MP3 播放與 LCD 顯示的智慧開發板，適合用於 AI 與互動式應用。
+
+#### c.功能流程說明（Function Flow）
+##### 壹、按下按鈕拍照
+使用 RTC（實時時鐘） 或 millis() 計時器，每 60 秒觸發一次攝影機拍照。
+##### 貳、傳送照片給 Gemini Vision 並要求生成童話故事
+將圖片發送給 Google Gemini AI，提示詞要求：「根據這張圖片，請說一段童話故事」，例如：
+
+🔸 “Tell a short fairytale based on this image.”
+
+##### 參、將回傳的故事（Text1）交給 Google TTS 並播放
+使用 Google Text-to-Speech 將故事轉為語音，讓裝置播出 AI 創作的童話故事。
+
+#### d.專案範例（Project Examples）：
+
+<div align="center">
+
+|專案名稱	|說明|
+|---------------|----|
+|GenAIVision_TTS_TFT.ino|	整合拍照、Vision 辨識、文字生成、TTS 語音播放與 LCD 顯示等功能的完整範例程式|
+
+</div>

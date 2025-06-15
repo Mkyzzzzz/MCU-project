@@ -2,7 +2,7 @@
 layout: post
 title: AI-assisted recycling sorting system
 class: 電機4B
-student ID: (01072114)
+student ID: 01072114
 name: 張家豪
 ---
 

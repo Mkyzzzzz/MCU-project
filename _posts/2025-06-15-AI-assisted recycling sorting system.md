@@ -152,8 +152,7 @@ PF9：LED_BUILTIN / LED_B（藍燈）、PE6：LED_G（綠燈）
 ### 2. ILI9341 TFT LCD
 ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD 顯示模組，搭載 240×320 像素解析度 與 SPI 通訊介面。該模組內建 ILI9341 顯示驅動 IC，支援 262K 色彩顯示與圖形加速功能，能夠顯示影像、文字、圖形介面，常見於智慧手持裝置、嵌入式儀表與 IoT 應用。
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
-<p align="center">圖5 ILI9341 TFT LCD實體外觀圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%964.%20ILI9341%20TFT%20LCD%E5%AF%A6%E9%AB%94%E5%A4%96%E8%A7%80%E5%9C%96.png">圖5 ILI9341 TFT LCD實體外觀圖</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E5%9C%965.AMB82%20MINI%20and%20QVGA%20TFT%20LCD%20%E6%8E%A5%E7%B7%9A%E5%9C%96.png"></p>
 <p align="center">圖6 AMB82 MINI and QVGA TFT LCD 接線圖</p>
 

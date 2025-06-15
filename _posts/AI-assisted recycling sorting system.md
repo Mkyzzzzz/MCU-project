@@ -417,8 +417,16 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 </div>
 
+### 六、AI輔助回收分類系統成果展示
+
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png"></p>
+<p align="center">圖1 Arduino執行結果</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png"></p>
+<p align="center">圖2 AI判定結果</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.jpg.png"></p>
+<p align="center">圖3 測試所使用的照片</p>
+
 <br>
 <br>
 
 *This site was last updated {{ site.time | date: "%B %d, %Y" }}.*
-

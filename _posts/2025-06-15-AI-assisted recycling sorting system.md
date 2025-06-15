@@ -543,7 +543,7 @@ file.close();
 
 ## 三、專案流程圖
 
-## 四、程式生成提示語設計（Prompts for Code Generation）
+## 四、程式生成提示語設計
 
 程式生成提示語設計（Prompts for Code Generation）是一門設計如何清楚、有效地向 AI 模型（如 GPT、Gemini、Copilot 等）描述你想要產生的程式碼的技巧。良好的提示語可以幫助你獲得準確、可執行、易維護的程式碼。
 

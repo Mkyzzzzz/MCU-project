@@ -162,7 +162,48 @@ ILI9341 是一款廣泛應用於嵌入式系統的 2.4 吋/2.8 吋彩色 TFT LCD
 
 <div align="center">
 	
-<https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/2025-06-15-%E8%A1%A81%20ILI9341%20TFT%20LCD%20%E8%A6%8F%E6%A0%BC.md>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>顯示尺寸</td>
+      <td>2.4 吋 / 2.8 吋 TFT LCD</td>
+    </tr>
+    <tr>
+      <td>解析度</td>
+      <td>240 × 320 pixels</td>
+    </tr>
+    <tr>
+      <td>控制晶片</td>
+      <td>ILI9341</td>
+    </tr>
+    <tr>
+      <td>通訊介面</td>
+      <td>SPI（支援 4 線序列通訊，亦可設定為 8-bit 並列）</td>
+    </tr>
+    <tr>
+      <td>顯示色彩</td>
+      <td>262K（18-bit）真彩顯示</td>
+    </tr>
+    <tr>
+      <td>操作電壓</td>
+      <td>3.3V（邏輯電平，部分模組具備 5V 轉接）</td>
+    </tr>
+    <tr>
+      <td>觸控功能</td>
+      <td>可選（部分模組具電阻式/電容式觸控，搭配 XPT2046）</td>
+    </tr>
+    <tr>
+      <td>背光模組</td>
+      <td>LED 背光，PWM 可調整亮度</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 

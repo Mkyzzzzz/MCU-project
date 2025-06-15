@@ -23,7 +23,7 @@ name: 張家豪
 - Camera (內建)：每分鐘擷取影像，送至 Gemini Vision 模型。
 
 - MicroSD 卡：儲存辨識結果與對應影像。
-- 
+
 - RTC 模組（若接入）：確保時間戳記準確。
 
 模組彼此透過 SPI、PWM 與 GPIO 接腳整合，並透過 Wi-Fi 連網串接生成式 AI 服務。

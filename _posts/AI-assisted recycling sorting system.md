@@ -378,9 +378,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 越明確，越好用
 
 ## 五、AI輔助回收分類系統程式碼與說明
-<b>Code:</b>
 
-<b> AI-assisted Recycle System（AI 輔助回收系統）</b>
 ### 1.作業目標(Objective):
 
 AI-assisted Recycle System
@@ -425,6 +423,8 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 <p align="center">圖2 AI判定結果</p>
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png"></p>
 <p align="center">圖3 測試所使用的照片</p>
+
+<b>Code:</b>
 
 <br>
 <br>

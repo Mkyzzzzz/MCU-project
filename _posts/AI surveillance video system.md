@@ -590,12 +590,39 @@ void loop() {
 
 ## 六、AI監視錄影系統成果展示
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png"></p>
-<p align="center">圖1 Arduino執行結果</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png"></p>
-<p align="center">圖2 AI判定結果</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png"></p>
-<p align="center">圖3 測試所使用的照片</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_1.png"></p>
+<p align="center">圖1 第一次擷取照片</p>
+
+<b>照片對應A1產生文字敘述</b>
+The image shows a close-up, upside-down view of a person's face and upper body. 
+
+
+The person has dark hair, and their face is largely visible, although the features are somewhat distorted due to the angle. Their skin tone is light to medium. They are wearing a dark-colored, possibly black, t-shirt with the word "PINETI" printed on it in white, upside down from the viewer's perspective. The background is a plain, light-grey or off-white wall or ceiling.  The overall impression is a casual, informal self-portrait taken from an unusual angle.
+
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_2.png"></p>
+<p align="center">圖2 第二次擷取照片</p>
+
+<b>照片對應A1產生文字敘述</b>
+The image shows a close-up, upside-down view of a person's head and neck.  The individual has dark hair, and their face is partially visible.  Their eyes are closed, and their mouth is slightly open. The skin tone appears light to medium.  The person is wearing a dark-colored shirt. The background is a plain, light-grey ceiling with some faintly visible light fixtures.
+
+There is no prominent text in the image.
+
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_3.png"></p>
+<p align="center">圖3 第三次擷取照片</p>
+
+<b>照片對應A1產生文字敘述</b>
+Here's a description of the image:
+
+The image is a low-angle, fisheye shot taken from the perspective of someone sitting in a chair. The viewpoint is significantly tilted upwards.  The scene appears to be a classroom or lecture hall with white walls and ceiling. 
+
+The immediate foreground shows the legs and lower body of the person taking the picture, dressed in dark clothing. Part of a chair, appearing light grey or off-white and made of plastic or similar material, is visible.  A partially visible item with a marijuana leaf pattern is situated on the chair.
+
+In the background, there's a whiteboard, which appears largely blank except for some faint markings. A person is seen sitting at a desk in front of this whiteboard, appearing to be giving a presentation or lecture.  The person's face is partially visible. 
+
+The ceiling features three long, rectangular fluorescent light fixtures. There are also various electrical fixtures and wires visible on the wall. A water cooler or large water bottle is partially visible in the upper right corner. The overall setting seems somewhat basic and functional. There is no prominent text present besides what might be on the whiteboard, which is unreadable in the image.
+
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI%20surveillance%20video%20system_4.png"></p>
+<p align="center">圖4 SD卡存取狀況</p>
 
 <br>
 <br>

@@ -541,9 +541,7 @@ file.close();
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/GenAI%20%E7%B7%A8%E7%A2%BC%E8%A8%AD%E8%A8%88%E6%B5%81%E7%A8%8B.png?raw=true"></p>
 <p align="center">圖7 GenAI 編碼設計流程</p>
 
-## 三、專案流程圖
-
-## 四、程式生成提示語設計
+## 三、程式生成提示語設計
 
 程式生成提示語設計（Prompts for Code Generation）是一門設計如何清楚、有效地向 AI 模型（如 GPT、Gemini、Copilot 等）描述你想要產生的程式碼的技巧。良好的提示語可以幫助你獲得準確、可執行、易維護的程式碼。
 
@@ -566,6 +564,8 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 限制不想要的東西
 - 加入範例與邏輯限制
 - 越明確，越好用
+
+## 四、AI監視錄影系統專案流程圖
 
 ## 五、AI監視錄影系統程式碼與說明
 

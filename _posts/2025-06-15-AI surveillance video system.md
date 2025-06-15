@@ -568,7 +568,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 ## 四、AI監視錄影系統專案流程圖
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/AI%E7%9B%A3%E8%A6%96%E9%8C%84%E5%BD%B1%E7%B3%BB%E7%B5%B1%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
-<p align="center">圖9 AI監視錄影系統專案流程圖</p>
+<p align="center">圖8 AI監視錄影系統專案流程圖</p>
 
 ## 五、AI監視錄影系統程式碼與說明
 

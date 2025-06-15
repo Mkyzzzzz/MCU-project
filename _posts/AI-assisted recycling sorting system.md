@@ -1,9 +1,9 @@
 ---
 layout: post
-title: ESP32 WiFi
-author: [Richard Kuo]
-category: [Lecture]
-tags: [jekyll, ai]
+title: AI-assisted recycling sorting system
+class: [Richard Kuo]
+student ID: [Lecture]
+name: [jekyll, ai]
 ---
 
 # <p align="center"><p align="center"><span style="font-size:50px;"><b>EdgeAI 微控制應用期末專題實作報告</b></span></p>

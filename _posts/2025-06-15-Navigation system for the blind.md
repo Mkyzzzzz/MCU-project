@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Emotion-sensing music player
+title: Navigation system for the blind
 class: 電機4B
 student ID: (01072114)
 name: 張家豪
@@ -566,26 +566,61 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 加入範例與邏輯限制
 - 越明確，越好用
 
-## 四、情緒感知音樂播放器專案流程圖
+## 四、AI盲人導航系統專案流程圖
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E6%83%85%E7%B7%92%E9%9F%B3%E6%A8%82%E6%84%9F%E7%9F%A5%E6%92%AD%E6%94%BE%E5%99%A8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
-<p align="center">圖8 情緒感知音樂播放器專案流程圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/AI%E7%9B%B2%E4%BA%BA%E5%B0%8E%E8%88%AA%E7%B3%BB%E7%B5%B1%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
+<p align="center">圖8 AI盲人導航系統專案流程圖</p>
 
-## 五、情緒感知音樂播放器程式碼與說明
+## 五、AI盲人導航系統程式碼與說明
 
-### 1.作業目標(Objective):
+### 1.作業目標（Objective）
+使用 AMB82-mini 開發板，透過攝影機掃描 QR Code，取得地點名稱文字，並透過 Google TTS 將文字轉為語音 MP3，再從 SD 卡播放語音，實現「掃碼即播報地點名稱」的導覽功能。
 
-利用 AI 辨識使用者的情緒，並根據情緒從 SD 卡中已有的音樂檔案中選擇一首合適的歌曲播放，達到情緒療癒或輔助的效果。
+### 2.開發板與功能（Board & Function）
+開發板：AMB82-mini（Realtek RTL8735B）
 
-### 2.功能與操作流程（Feature Description）:
-#### 壹、拍照並透過 Gemini 辨識情緒
-- 使用攝影機拍下使用者的臉部照片
-- 將照片傳送給 Gemini Vision
-- 提示詞中同時列出 SD 卡中幾個已知的歌曲名稱（例如："happy.mp3", "sad.mp3", "relax.mp3"）
-- 讓 Gemini 根據照片中的情緒判斷應該播放哪一首歌
+👉 這是一塊支援攝影機、Wi-Fi、MP3 播放與 LCD 顯示的智慧開發板，適合用於 AI 與互動式應用。
 
-#### 貳、播放 MP3 音樂檔
-根據 AI 回傳的歌曲檔名（如 "sad.mp3"），從 SD 卡 播放對應的 MP3 音樂檔案。
+### 3.功能流程說明（Function Flow）
+#### (一)掃描 QR Code 取得地點名稱文字
+使用攝影機辨識 QR Code，取得儲存在 QR code 中的字串（如 "National Palace Museum"）。
+
+🔍 使用範例：examples > AmebaQR > QRCodeScanner
+#### (二)傳送照片給 Gemini Vision 並要求生成童話故事
+使用 Google TTS 將上述地點名稱文字轉為語音，並儲存為 MP3 檔案（如 museum.mp3）。
+
+🔊 使用範例：examples > AmebaNN > MultimediaAI > TextToSpeech
+
+#### (三)從 SD 卡播放剛剛生成的 MP3
+播放儲存在 SD 卡中的 MP3 檔案，播報地點名稱。
+
+💾 使用範例：examples > AmebaMultimedia > SDCardPlayMP3
+### 4.專案範例（Project Examples）：
+
+<div align="center">
+  <table>
+    <thead>
+      <tr>
+        <th>範例名稱</th>
+        <th>功能說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>QRCodeScanner</td>
+        <td>利用攝影鏡頭掃描並解析 QR code</td>
+      </tr>
+      <tr>
+        <td>TextToSpeech</td>
+        <td>呼叫 Google TTS API 將文字轉為 MP3</td>
+      </tr>
+      <tr>
+        <td>SDCardPlayMP3</td>
+        <td>播放指定路徑下的 MP3 檔案</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### 3.相關功能範例（Functional Examples）:
 
@@ -706,50 +741,22 @@ void playMP3FromSD(String filename)
 }
 ```
 
-## 六、情緒感知音樂播放器成果展示
+## 六、AI盲人導航系統成果展示
+
+與QRcode距離:約0.5m
+
+QRcode大小:10cm*10cm
 
 <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
+  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/AI%E7%9B%B2%E4%BA%BA%E5%B0%8E%E8%88%AA%E7%B3%BB%E7%B5%B1%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA.mp4">
+    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/AI%E7%9B%B2%E4%BA%BA%E5%B0%8E%E8%88%AA%E7%B3%BB%E7%B5%B1%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
          style="display: block; margin: 0 auto; width: 400px;">
   </a>
 </div>
 
-<p align="center">影1 happy-OMG</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/happy-OMG.png?raw=true"></p>
-<p align="center">圖9 偵測happy情緒執行結果</p>
-
-<div align="center">
-
- <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/sad-Mood.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_sad%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影2 sad-Mood</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/sad-Mood.png?raw=true"></p>
-<p align="center">圖10 偵測sad情緒執行結果</p>
-
-<div align="center">
-
-  <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/angry-Payphone.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_angry%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影3 angry-Payphone</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/angry-Payphone.png?raw=true"></p>
-<p align="center">圖11偵測angry情緒執行結果</p>
+<p align="center">影1 AI盲人導航系統成果展示</p>
 
 <br>
 <br>
 
 *This site was last updated {{ site.time | date: "%B %d, %Y" }}.*
-

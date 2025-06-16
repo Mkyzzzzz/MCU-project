@@ -818,22 +818,22 @@ void sdPlayMP3(String filename)
 
 <div align="center">
 	
-[![影片預覽圖](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/sad-Mood.mp4)
+[![影片預覽圖](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_sad%E9%A0%90%E8%A6%BD%E5%9C%96.png)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/sad-Mood.mp4)
 
 </div>
 <p align="center">影2 sad-Mood</p>
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png?raw=true"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/sad-Mood.png?raw=true"></p>
 <p align="center">圖10 偵測sad情緒執行結果</p>
 
 <div align="center">
 	
-[![影片預覽圖](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)
+[![影片預覽圖](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_angry%E9%A0%90%E8%A6%BD%E5%9C%96.png)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)
 
 </div>
-<p align="center">影1 angry-Payphone</p>
+<p align="center">影3 angry-Payphone</p>
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png?raw=true"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/angry-Payphone.png?raw=true"></p>
 <p align="center">圖11偵測angry情緒執行結果</p>
 
 <br>

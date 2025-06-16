@@ -812,7 +812,7 @@ void loop()
 }
 ```
 
-## 六、情緒感知音樂播放器成果展示
+## 六、看圖說故事成果展示
 
 <div>
   <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4">

@@ -568,7 +568,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 ## 四、情緒感知音樂播放器專案流程圖
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E6%83%85%E7%B7%92%E9%9F%B3%E6%A8%82%E6%84%9F%E7%9F%A5%E6%92%AD%E6%94%BE%E5%99%A8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
-<p align="center">圖8 AI輔助回收分類系統專案流程圖</p>
+<p align="center">圖8 情緒感知音樂播放器專案流程圖</p>
 
 ## 五、情緒感知音樂播放器程式碼與說明
 

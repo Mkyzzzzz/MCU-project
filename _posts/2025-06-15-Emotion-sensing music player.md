@@ -806,6 +806,16 @@ void sdPlayMP3(String filename)
 ```
 
 ## 六、情緒感知音樂播放器成果展示
+
+<div style="text-align: center;">
+  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4">
+    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖" style="width:400px;">
+  </a>
+</div>
+
+
+
+
 <div align="center">
 	
 [![影片預覽圖](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)

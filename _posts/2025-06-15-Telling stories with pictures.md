@@ -816,7 +816,7 @@ void loop()
 
 <div>
   <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/%E7%9C%8B%E5%9C%96%E8%AA%AA%E6%95%85%E4%BA%8B%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E7%9C%8B%E5%9C%96%E8%AA%AA%E6%95%85%E4%BA%8B%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
+    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/%E7%9C%8B%E5%9C%96%E8%AA%AA%E6%95%85%E4%BA%8B%E9%A0%90%E8%A6%BD%E5%9C%96.png?raw=true" alt="影片預覽圖"
          style="display: block; margin: 0 auto; width: 400px;">
   </a>
 </div>

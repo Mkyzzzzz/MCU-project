@@ -809,10 +809,13 @@ void sdPlayMP3(String filename)
 
 <p align="center"><video src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/happy-OMG.mp4" controls width="600"></video></p>
 <p align="center">影片1 happy-OMG</p>
+
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png?raw=true"></p>
 <p align="center">圖9 Arduino執行結果</p>
+
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png?raw=true"></p>
 <p align="center">圖10 AI判定結果</p>
+
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png?raw=true"></p>
 <p align="center">圖11 測試所使用的照片</p>
 

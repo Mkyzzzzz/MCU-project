@@ -808,7 +808,7 @@ void sdPlayMP3(String filename)
 ## 六、情緒感知音樂播放器成果展示
 
 <div style="text-align: center;">
-[點我觀看影片](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/happy-OMG.mp4?raw=true)
+(https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/happy-OMG.mp4?raw=true)
 </div>
 
 <p align="center">影片1 happy-OMG</p>

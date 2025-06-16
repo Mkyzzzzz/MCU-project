@@ -613,195 +613,95 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 </div>
 
 <b>Code:</b>
+
 ```
-#include <WiFi.h>
+#include "VideoStream.h"
+#include "QRCodeScanner.h"
+#include "WiFi.h"
 #include <WiFiUdp.h>
 #include "GenAI.h"
-#include "VideoStream.h"
-#include "SPI.h"
-#include "AmebaILI9341.h"
-#include "TJpg_Decoder.h" // Include the jpeg decoder library
 #include "AmebaFatFS.h"
 
-String openAI_key = "";               // Your generated OpenAI API key here
-String Gemini_key = "AIzaSyCCwbt-JZVF_sdc2Eos6A8KipWZmjupvQk";               // Your generated Gemini API key here
-String Llama_key = "";                // Your generated Llama API key here
-char wifi_ssid[] = "hahaha";    // Your network SSID (name)
-char wifi_pass[] = "93034570";        // Your network password
-
-WiFiSSLClient client;
-GenAI llm;
-GenAI tts;
-
-AmebaFatFS fs;
-String mp3Filename = "test_play_google_tts.mp3";
-
-VideoSetting config(768, 768, CAM_FPS, VIDEO_JPEG, 1);
 #define CHANNEL 0
 
-uint32_t img_addr = 0;
-uint32_t img_len = 0;
-const int buttonPin = 1;          // The number of the pushbutton pin
+// WiFi 設定
+char ssid[] = "hahaha";       // 更改為你的Wi-Fi名稱
+char pass[] = "93034570";   // 更改為你的Wi-Fi密碼
 
-String prompt_msg = "請問這張圖中的情緒是什麼? 根據這個情緒,sad推薦Mood,angry推薦Payphone,happy推薦OMG。";
+VideoSetting config(CHANNEL);
+QRCodeScanner Scanner;
+GenAI tts;
+AmebaFatFS fs;
 
-#define TFT_RESET 5
-#define TFT_DC    4
-#define TFT_CS    SPI_SS
-
-AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);
-
-#define ILI9341_SPI_FREQUENCY 20000000
-
-bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap)
-{
-    tft.drawBitmap(x, y, w, h, bitmap);
-    return 1;
-}
+String lastResult = "";
+String mp3Filename = "tts_location.mp3";
 
 void initWiFi()
 {
-    for (int i = 0; i < 2; i++) {
-        WiFi.begin(wifi_ssid, wifi_pass);
+    WiFi.begin(ssid, pass);
+    Serial.print("Connecting to WiFi");
+    uint32_t startTime = millis();
 
-        delay(1000);
-        Serial.println("");
-        Serial.print("Connecting to ");
-        Serial.println(wifi_ssid);
-
-        uint32_t StartTime = millis();
-        while (WiFi.status() != WL_CONNECTED) {
-            delay(500);
-            if ((StartTime + 5000) < millis()) {
-                break;
-            }
-        }
-
-        if (WiFi.status() == WL_CONNECTED) {
-            Serial.println("");
-            Serial.println("STAIP address: ");
-            Serial.println(WiFi.localIP());
-            Serial.println("");
-            break;
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+        if (millis() - startTime > 8000) {
+            Serial.println("\nWiFi connection failed.");
+            return;
         }
     }
-}
 
-void init_tft()
-{
-    tft.begin();
-    tft.setRotation(2);
-    tft.clr();
-    tft.setCursor(0, 0);
-    tft.setForeground(ILI9341_GREEN);
-    tft.setFontSize(2);
+    Serial.println("\nWiFi connected. IP address: ");
+    Serial.println(WiFi.localIP());
 }
 
 void setup()
 {
     Serial.begin(115200);
-    SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);
-    initWiFi();
-
-    config.setRotation(0);
+    // 初始化相機掃描設定
     Camera.configVideoChannel(CHANNEL, config);
     Camera.videoInit();
-    Camera.channelBegin(CHANNEL);
-    Camera.printInfo();
-    
-    pinMode(buttonPin, INPUT);
-    pinMode(LED_B, OUTPUT);
+    Scanner.StartScanning();
 
-    init_tft();
-    tft.println("GenAIVision_TTS_TFT");
-
-    TJpgDec.setJpgScale(2); 
-    TJpgDec.setCallback(tft_output);
+    // 初始化Wi-Fi連線
+    initWiFi();
 }
 
 void loop()
 {
-    tft.setCursor(0, 1);
-    tft.println("Press button to capture image");
+    delay(1000);  // 每秒檢查一次掃描結果
+    Scanner.GetResultString();
+    Scanner.GetResultLength();
 
-    if ((digitalRead(buttonPin)) == 1) {
-        tft.println("capture image");
+    // 如果有新的掃描結果且與上次不同
+    if (Scanner.ResultString != nullptr && Scanner.ResultLength != 0) {
+        String currentResult = String(Scanner.ResultString);
 
-        // Blink LED to indicate image capture
-        for (int count = 0; count < 3; count++) {
-            digitalWrite(LED_B, HIGH);
-            delay(500);
-            digitalWrite(LED_B, LOW);
-            delay(500);
+        if (currentResult != lastResult) {
+            Serial.println("New QR Code Detected: " + currentResult);
+            lastResult = currentResult;
+
+            // 呼叫 Google TTS 產生 mp3
+            tts.googletts(mp3Filename, currentResult, "en-US");
+
+            // 播放 mp3
+            playMP3FromSD(mp3Filename);
         }
-
-        // Capture Image
-        Camera.getImage(0, &img_addr, &img_len); 
-
-        // JPEG Decode & Display
-        TJpgDec.getJpgSize(0, 0, (uint8_t *)img_addr, img_len);
-        TJpgDec.drawJpg(0, 0, (uint8_t *)img_addr, img_len);
-
-        // Send Image to Gemini Vision for Emotion Detection
-        String text = llm.geminivision(Gemini_key, "gemini-2.0-flash", prompt_msg, img_addr, img_len, client);
-        Serial.println(text);
-
-        // Extract Emotion from Gemini response
-        String emotion = extractEmotionFromResponse(text); // A function that extracts the emotion from Gemini's response
-        Serial.println("Detected Emotion: " + emotion);
-
-        // Display Emotion on TFT screen
-        tft.setCursor(0, 30);
-        tft.println("Detected Emotion: " + emotion);
-
-        // Based on emotion, recommend a song
-        String songRecommendation = recommendSongBasedOnEmotion(emotion);
-        tft.setCursor(0, 50);
-        tft.println("Recommended Song: " + songRecommendation);
-
-        // Play Text-To-Speech for recommendation
-        tft.clr();
-        tft.setCursor(0, 0);    
-        tft.println("Text-To-Speech");
-        tts.googletts(mp3Filename, "推薦歌曲: " + songRecommendation, "zh-TW");
-        delay(500);
-        sdPlayMP3(songRecommendation);  // Play the recommended song
     }
 }
 
-// Function to extract emotion from Gemini's response
-String extractEmotionFromResponse(String response)
-{
-    // This is a simple placeholder, assuming Gemini responds with an emotion directly.
-    // You might need to parse the response more thoroughly based on Gemini's exact output format.
-    if (response.indexOf("happy") != -1) return "happy";
-    if (response.indexOf("sad") != -1) return "sad";
-    if (response.indexOf("angry") != -1) return "angry";
-    return "neutral";  // Default emotion if not detected
-}
-
-// Function to recommend a song based on detected emotion
-String recommendSongBasedOnEmotion(String emotion)
-{
-    // Modify this function to include your SD card song list based on emotions
-    if (emotion == "happy") return "OMG.mp3";
-    if (emotion == "sad") return "Mood.mp3";
-    if (emotion == "angry") return "Payphone.mp3";
-    return "neutral_song.mp3";  // Default song for neutral emotions
-}
-
-void sdPlayMP3(String filename)
+void playMP3FromSD(String filename)
 {
     fs.begin();
     String filepath = String(fs.getRootPath()) + filename;
     File file = fs.open(filepath, MP3);
-    if (!file) {
-        Serial.println("Failed to open MP3 file!");
-        return;
+    if (file) {
+        file.setMp3DigitalVol(255); // 可調整音量
+        file.playMp3();
+        file.close();
+    } else {
+        Serial.println("Failed to open MP3 file.");
     }
-    file.setMp3DigitalVol(175);  // Set volume level
-    file.playMp3();  // Start playing the MP3
-    file.close();
     fs.end();
 }
 ```

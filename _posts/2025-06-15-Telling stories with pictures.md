@@ -568,7 +568,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 
 ## 四、看圖說故事專案流程圖
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E6%83%85%E7%B7%92%E9%9F%B3%E6%A8%82%E6%84%9F%E7%9F%A5%E6%92%AD%E6%94%BE%E5%99%A8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E7%9C%8B%E5%9C%96%E8%AA%AA%E6%95%85%E4%BA%8B%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
 <p align="center">圖8 看圖說故事專案流程圖</p>
 
 ## 五、看圖說故事程式碼與說明
@@ -815,44 +815,13 @@ void loop()
 ## 六、看圖說故事成果展示
 
 <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
+  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/%E7%9C%8B%E5%9C%96%E8%AA%AA%E6%95%85%E4%BA%8B%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA.mp4">
+    <img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E7%9C%8B%E5%9C%96%E8%AA%AA%E6%95%85%E4%BA%8B%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
          style="display: block; margin: 0 auto; width: 400px;">
   </a>
 </div>
 
-<p align="center">影1 happy-OMG</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/happy-OMG.png?raw=true"></p>
-<p align="center">圖9 偵測happy情緒執行結果</p>
-
-<div align="center">
-
- <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/sad-Mood.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_sad%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影2 sad-Mood</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/sad-Mood.png?raw=true"></p>
-<p align="center">圖10 偵測sad情緒執行結果</p>
-
-<div align="center">
-
-  <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/angry-Payphone.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_angry%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影3 angry-Payphone</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/angry-Payphone.png?raw=true"></p>
-<p align="center">圖11偵測angry情緒執行結果</p>
+<p align="center">影1 看圖說故事成果展示</p>
 
 <br>
 <br>

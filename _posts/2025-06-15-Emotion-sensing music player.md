@@ -808,7 +808,7 @@ void sdPlayMP3(String filename)
 ## 六、情緒感知音樂播放器成果展示
 
 <p align="center">
-[![播放影片](https://img.shields.io/badge/▶-觀看影片-blue)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)
+[![播放影片](https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)
 </p>
 <p align="center">影片1 happy-OMG</p>
 

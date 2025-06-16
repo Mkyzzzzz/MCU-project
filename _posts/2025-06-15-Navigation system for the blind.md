@@ -622,31 +622,6 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
   </table>
 </div>
 
-### 3.相關功能範例（Functional Examples）:
-
-<div align="center">
-	
-<table>
-  <thead>
-    <tr>
-      <th>專案名稱</th>
-      <th>說明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>GenAIVision_TTS.ino</td>
-      <td>拍照 → 使用 Vision AI 分析 → 使用 TTS 播放語音</td>
-    </tr>
-    <tr>
-      <td>GenAIVision_TTS_LCD.ino</td>
-      <td>拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音</td>
-    </tr>
-  </tbody>
-</table>
-
-</div>
-
 <b>Code:</b>
 
 ```

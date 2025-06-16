@@ -624,12 +624,14 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 ## 六、AI輔助英語教學系統成果展示
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png?raw=true"></p>
-<p align="center">圖9 Arduino執行結果</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_2.png?raw=true"></p>
-<p align="center">圖10 AI判定結果</p>
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_3.png?raw=true"></p>
-<p align="center">圖11 測試所使用的照片</p>
+<div>
+  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/AI%E8%BC%94%E5%8A%A9%E8%8B%B1%E8%AA%9E%E5%AD%B8%E7%BF%92.mp4">
+    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/AI%E8%BC%94%E5%8A%A9%E8%8B%B1%E8%AA%9E%E5%AD%B8%E7%BF%92%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
+         style="display: block; margin: 0 auto; width: 400px;">
+  </a>
+</div>
+
+<p align="center">影1 AI輔助英語教學系統成果展示</p>
 
 <br>
 <br>

@@ -567,7 +567,7 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 
 ## 四、AI輔助英語教學系統專案流程圖
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/AI%E8%BC%94%E5%8A%A9%E8%8B%B1%E8%AA%9E%E6%95%99%E5%AD%B8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png">圖8 AI輔助英語教學系統專案流程圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/AI%E8%BC%94%E5%8A%A9%E8%8B%B1%E8%AA%9E%E6%95%99%E5%AD%B8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true">圖8 AI輔助英語教學系統專案流程圖</p>
 
 
 ## 五、AI輔助英語教學系統程式碼與說明

@@ -807,10 +807,9 @@ void sdPlayMP3(String filename)
 
 ## 六、情緒感知音樂播放器成果展示
 
-<div style="text-align: center;">
-(https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)
-</div>
-
+<p align="center">
+(https://img.shields.io/badge/▶-觀看影片-blue)](https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4)
+</p>
 <p align="center">影片1 happy-OMG</p>
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png?raw=true"></p>

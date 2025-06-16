@@ -566,287 +566,211 @@ AI 是根據你提供的文字提示來推論程式碼。提示設計得越清�
 - 加入範例與邏輯限制
 - 越明確，越好用
 
-## 四、情緒感知音樂播放器專案流程圖
+## 四、盲人視覺輔助系統專案流程圖
 
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E6%83%85%E7%B7%92%E9%9F%B3%E6%A8%82%E6%84%9F%E7%9F%A5%E6%92%AD%E6%94%BE%E5%99%A8%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
-<p align="center">圖8 情緒感知音樂播放器專案流程圖</p>
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E7%9B%B2%E4%BA%BA%E8%A6%96%E8%A6%BA%E8%BC%94%E5%8A%A9%E7%B3%BB%E7%B5%B1%E5%B0%88%E6%A1%88%E6%B5%81%E7%A8%8B%E5%9C%96.png?raw=true"></p>
+<p align="center">圖8 盲人視覺輔助系統專案流程圖</p>
 
-## 五、情緒感知音樂播放器程式碼與說明
+## 五、盲人視覺輔助系統程式碼與說明
 
-### 1.作業目標(Objective):
+### 1.作業目標：
+整合以下 4 項功能，建立一個可以進行感測、影像辨識、時間推理、語音互動的智慧系統，使用樣例程式作為參考，完成整合應用程式。
 
-利用 AI 辨識使用者的情緒，並根據情緒從 SD 卡中已有的音樂檔案中選擇一首合適的歌曲播放，達到情緒療癒或輔助的效果。
+### 2.功能說明：
+#### (一)觸控（Touch）功能 — ADC 模擬輸入
+使用 類比輸入（Analog Input） 偵測觸控狀態（可用手指接觸金屬片或電阻式觸控感測）。
 
-### 2.功能與操作流程（Feature Description）:
-#### 壹、拍照並透過 Gemini 辨識情緒
-- 使用攝影機拍下使用者的臉部照片
-- 將照片傳送給 Gemini Vision
-- 提示詞中同時列出 SD 卡中幾個已知的歌曲名稱（例如："happy.mp3", "sad.mp3", "relax.mp3"）
-- 讓 Gemini 根據照片中的情緒判斷應該播放哪一首歌
+範例參考程式：
 
-#### 貳、播放 MP3 音樂檔
-根據 AI 回傳的歌曲檔名（如 "sad.mp3"），從 SD 卡 播放對應的 MP3 音樂檔案。
+examples > 03. Analog > AnalogInput.ino
 
-### 3.相關功能範例（Functional Examples）:
+用途：透過觸控觸發不同功能模式（例如每觸一次切換功能）。
 
-<div align="center">
-	
-<table>
-  <thead>
-    <tr>
-      <th>專案名稱</th>
-      <th>說明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>GenAIVision_TTS.ino</td>
-      <td>拍照 → 使用 Vision AI 分析 → 使用 TTS 播放語音</td>
-    </tr>
-    <tr>
-      <td>GenAIVision_TTS_LCD.ino</td>
-      <td>拍照 → 使用 Vision AI 分析 → 在 LCD 顯示分析結果 → 用 TTS 播放語音</td>
-    </tr>
-  </tbody>
-</table>
+#### (二)拍照並詢問 Gemini 場景辨識
+使用攝影機模組拍照，並把圖片傳送給 Google Gemini Vision API。
 
-</div>
+從回傳結果中獲得對當前場景的描述。
+
+範例參考程式：
+
+GenAIVision_TTS.ino
+
+用途：辨識你面前的東西，並用文字描述它。
+
+#### (三)傳送 RTC 時間給 Gemini 並生成文字
+使用 RTC 模組讀取實際時間資訊（年月日與時間）。
+
+傳送給 Gemini Text API，請它根據時間生成一段有趣的描述或敘述。
+
+範例參考程式：
+
+examples > AmebaRTC > Simple_RTC.ino
+
+用途：像是「現在是幾點鐘」→ Gemini 回答：「早上八點，是個適合喝咖啡的時刻」。
+
+#### (四)錄音後傳送語音給 Gemini 並轉語音播放
+使用麥克風錄音。
+
+將音訊檔案傳送給 Gemini Audio API，進行語音辨識轉成文字。
+
+再用 Google TTS（文字轉語音） 播放出來。
+
+範例參考程式：
+
+GenAISpeech.ino
+
+用途：你說一句話 → 系統將語音轉成文字，再唸出來（語音回應）。
+
+### 3.整合應用建議：
+你可以設計成 按一次觸控切換一個模式：
+
+第一次觸控 ➜ 啟動 Vision 場景辨識模式
+
+第二次觸控 ➜ 啟動 RTC 時間解釋模式
+
+第三次觸控 ➜ 啟動語音錄音＋轉文字＋TTS 模式
+
+第四次觸控 ➜ 回到初始或輪迴模式
+
+### 4.實作重點：
+每個功能模組可以用樣例程式測試完成後再進行整合。
+
+整合時需注意：
+
+函式的呼叫與切換流程
+
+LCD 顯示（若有）、MP3 播放、SD 儲存等額外功能配合使用
+
+各模組之間的資源（如 memory、pin 腳、串流）不可衝突
 
 <b>Code:</b>
 ```
+#include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiUdp.h>
+#include "rtc.h"  // 引入 rtc.h，假設它是 Realtek SDK 中的 RTC 模組
 #include "GenAI.h"
-#include "VideoStream.h"
-#include "SPI.h"
-#include "AmebaILI9341.h"
-#include "TJpg_Decoder.h" // Include the jpeg decoder library
 #include "AmebaFatFS.h"
+#include "MP4Recording.h"
 
-String openAI_key = "";               // Your generated OpenAI API key here
-String Gemini_key = "AIzaSyCCwbt-JZVF_sdc2Eos6A8KipWZmjupvQk";               // Your generated Gemini API key here
-String Llama_key = "";                // Your generated Llama API key here
-char wifi_ssid[] = "hahaha";    // Your network SSID (name)
-char wifi_pass[] = "93034570";        // Your network password
+// WiFi 設置
+const char* ssid = "hahaha"; 
+const char* password = "93034570";
 
-WiFiSSLClient client;
-GenAI llm;
-GenAI tts;
+// RTC 設置
+RTCClass rtc;  // 使用之前定義的 RTCClass
 
-AmebaFatFS fs;
-String mp3Filename = "test_play_google_tts.mp3";
+// GenAI 物件
+GenAI gemini;
 
-VideoSetting config(768, 768, CAM_FPS, VIDEO_JPEG, 1);
-#define CHANNEL 0
+// 觸控相關設置
+int TouchPin = 34;  // 假設使用的觸控引腳
 
-uint32_t img_addr = 0;
-uint32_t img_len = 0;
-const int buttonPin = 1;          // The number of the pushbutton pin
+void setup() {
+  // 設定序列埠
+  Serial.begin(115200);
 
-String prompt_msg = "請問這張圖中的情緒是什麼? 根據這個情緒,sad推薦Mood,angry推薦Payphone,happy推薦OMG。";
+  // 連接 WiFi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println("正在連接 WiFi...");
+  }
+  Serial.println("WiFi 連接成功!");
 
-#define TFT_RESET 5
-#define TFT_DC    4
-#define TFT_CS    SPI_SS
+  // RTC 初始化
+  rtc.Init();  // 初始化 RTC
 
-AmebaILI9341 tft = AmebaILI9341(TFT_CS, TFT_DC, TFT_RESET);
-
-#define ILI9341_SPI_FREQUENCY 20000000
-
-bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t *bitmap)
-{
-    tft.drawBitmap(x, y, w, h, bitmap);
-    return 1;
+  // 設定觸控引腳為輸入
+  pinMode(TouchPin, INPUT);
 }
 
-void initWiFi()
-{
-    for (int i = 0; i < 2; i++) {
-        WiFi.begin(wifi_ssid, wifi_pass);
+void loop() {
+  // 檢查觸控事件
+  checkTouch();
 
-        delay(1000);
-        Serial.println("");
-        Serial.print("Connecting to ");
-        Serial.println(wifi_ssid);
+  // 捕獲並顯示圖像，並從 Gemini 獲取描述
+  captureAndShowImage();
 
-        uint32_t StartTime = millis();
-        while (WiFi.status() != WL_CONNECTED) {
-            delay(500);
-            if ((StartTime + 5000) < millis()) {
-                break;
-            }
-        }
+  // 獲取並顯示當前時間，並發送給 Gemini 進行處理
+  getCurrentTimeAndSend();
 
-        if (WiFi.status() == WL_CONNECTED) {
-            Serial.println("");
-            Serial.println("STAIP address: ");
-            Serial.println(WiFi.localIP());
-            Serial.println("");
-            break;
-        }
-    }
+  // 錄音並將錄音轉換為文字，然後用 TTS 朗讀
+  recordAndSpeak();
+  
+  delay(1000);  // 控制主循環延遲
 }
 
-void init_tft()
-{
-    tft.begin();
-    tft.setRotation(2);
-    tft.clr();
-    tft.setCursor(0, 0);
-    tft.setForeground(ILI9341_GREEN);
-    tft.setFontSize(2);
+// 檢查觸控輸入
+void checkTouch() {
+  if (digitalRead(TouchPin) == LOW) {
+    Serial.println("觸控偵測到! 切換模式...");
+    // 你可以在此處添加模式切換代碼
+  }
 }
 
-void setup()
-{
-    Serial.begin(115200);
-    SPI.setDefaultFrequency(ILI9341_SPI_FREQUENCY);
-    initWiFi();
-
-    config.setRotation(0);
-    Camera.configVideoChannel(CHANNEL, config);
-    Camera.videoInit();
-    Camera.channelBegin(CHANNEL);
-    Camera.printInfo();
-    
-    pinMode(buttonPin, INPUT);
-    pinMode(LED_B, OUTPUT);
-
-    init_tft();
-    tft.println("GenAIVision_TTS_TFT");
-
-    TJpgDec.setJpgScale(2); 
-    TJpgDec.setCallback(tft_output);
+// 捕獲圖像並向 Gemini 发送，並顯示描述
+void captureAndShowImage() {
+  Serial.println("正在捕獲圖像...");
+  
+  uint8_t* jpgBuffer;
+  size_t jpgSize;
+  
+  // 假設這裡有捕獲圖像的程式碼，並將圖像保存在 jpgBuffer 和 jpgSize 中
+  // camera.captureJPEG(&jpgBuffer);  // 根據你的硬體設置進行圖像捕獲
+  
+  // 向 Gemini 請求場景描述
+  getGeminiVisionDescription(jpgBuffer, jpgSize);
 }
 
-void loop()
-{
-    tft.setCursor(0, 1);
-    tft.println("Press button to capture image");
-
-    if ((digitalRead(buttonPin)) == 1) {
-        tft.println("capture image");
-
-        // Blink LED to indicate image capture
-        for (int count = 0; count < 3; count++) {
-            digitalWrite(LED_B, HIGH);
-            delay(500);
-            digitalWrite(LED_B, LOW);
-            delay(500);
-        }
-
-        // Capture Image
-        Camera.getImage(0, &img_addr, &img_len); 
-
-        // JPEG Decode & Display
-        TJpgDec.getJpgSize(0, 0, (uint8_t *)img_addr, img_len);
-        TJpgDec.drawJpg(0, 0, (uint8_t *)img_addr, img_len);
-
-        // Send Image to Gemini Vision for Emotion Detection
-        String text = llm.geminivision(Gemini_key, "gemini-2.0-flash", prompt_msg, img_addr, img_len, client);
-        Serial.println(text);
-
-        // Extract Emotion from Gemini response
-        String emotion = extractEmotionFromResponse(text); // A function that extracts the emotion from Gemini's response
-        Serial.println("Detected Emotion: " + emotion);
-
-        // Display Emotion on TFT screen
-        tft.setCursor(0, 30);
-        tft.println("Detected Emotion: " + emotion);
-
-        // Based on emotion, recommend a song
-        String songRecommendation = recommendSongBasedOnEmotion(emotion);
-        tft.setCursor(0, 50);
-        tft.println("Recommended Song: " + songRecommendation);
-
-        // Play Text-To-Speech for recommendation
-        tft.clr();
-        tft.setCursor(0, 0);    
-        tft.println("Text-To-Speech");
-        tts.googletts(mp3Filename, "推薦歌曲: " + songRecommendation, "zh-TW");
-        delay(500);
-        sdPlayMP3(songRecommendation);  // Play the recommended song
-    }
+// 從 Gemini 獲取圖像的場景描述
+void getGeminiVisionDescription(uint8_t* jpgBuffer, size_t jpgSize) {
+  Serial.println("獲取場景描述...");
+  
+  // 向 Gemini 發送圖像數據並獲取描述
+  String message = "請描述這張圖片";  // 可以根據需求自定義訊息
+  String description = gemini.geminivision("AIzaSyCCwbt-JZVF_sdc2Eos6A8KipWZmjupvQk", "模型名稱", message, (uint32_t)jpgBuffer, jpgSize, WiFiClient());
+  
+  Serial.println("描述: " + description);
+  speakDescription(description);  // 朗讀描述
 }
 
-// Function to extract emotion from Gemini's response
-String extractEmotionFromResponse(String response)
-{
-    // This is a simple placeholder, assuming Gemini responds with an emotion directly.
-    // You might need to parse the response more thoroughly based on Gemini's exact output format.
-    if (response.indexOf("happy") != -1) return "happy";
-    if (response.indexOf("sad") != -1) return "sad";
-    if (response.indexOf("angry") != -1) return "angry";
-    return "neutral";  // Default emotion if not detected
+// 朗讀描述文字
+void speakDescription(String description) {
+  Serial.println("正在朗讀描述...");
+  gemini.googletts("output.mp3", description, "zh");  // "zh" 表示中文，可以根據需要更改語言代碼
 }
 
-// Function to recommend a song based on detected emotion
-String recommendSongBasedOnEmotion(String emotion)
-{
-    // Modify this function to include your SD card song list based on emotions
-    if (emotion == "happy") return "OMG.mp3";
-    if (emotion == "sad") return "Mood.mp3";
-    if (emotion == "angry") return "Payphone.mp3";
-    return "neutral_song.mp3";  // Default song for neutral emotions
+// 獲取 RTC 時間並發送給 Gemini
+void getCurrentTimeAndSend() {
+  // 使用 rtc.h 提供的 rtc_read 函數來獲取時間
+  long long current_time = rtc.Read();
+  
+  // 提取時間組件（這部分根據 RTC 的實際行為進行調整）
+  int hour = (current_time / (60 * 60)) % 24;
+  int min = (current_time / 60) % 60;
+  int sec = current_time % 60;
+  
+  String timeMessage = "當前時間: " + String(hour) + ":" + String(min) + ":" + String(sec);
+  String response = gemini.geminitext("AIzaSyCCwbt-JZVF_sdc2Eos6A8KipWZmjupvQk", "模型名稱", timeMessage, WiFiClient());
+  
+  Serial.println("時間響應: " + response);
 }
 
-void sdPlayMP3(String filename)
-{
-    fs.begin();
-    String filepath = String(fs.getRootPath()) + filename;
-    File file = fs.open(filepath, MP3);
-    if (!file) {
-        Serial.println("Failed to open MP3 file!");
-        return;
-    }
-    file.setMp3DigitalVol(175);  // Set volume level
-    file.playMp3();  // Start playing the MP3
-    file.close();
-    fs.end();
+// 錄音並轉換為文字，然後用 TTS 語音回應
+void recordAndSpeak() {
+  // 假設有錄音並轉換為文字的代碼
+  String audioMessage = "錄音已完成，開始轉換為文字";
+  String textMessage = gemini.whisperaudio("你的API密鑰", "API服務器地址", "api路徑", "whisper模型", "錄音文件名", WiFiClient());
+  
+  Serial.println("錄音轉文字: " + textMessage);
+  gemini.googletts("output_audio.mp3", textMessage, "zh");  // 播放錄音轉換的文本
 }
+
 ```
 
-## 六、情緒感知音樂播放器成果展示
-
-<div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/happy-OMG.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_happy%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影1 happy-OMG</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/happy-OMG.png?raw=true"></p>
-<p align="center">圖9 偵測happy情緒執行結果</p>
-
-<div align="center">
-
- <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/sad-Mood.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_sad%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影2 sad-Mood</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/sad-Mood.png?raw=true"></p>
-<p align="center">圖10 偵測sad情緒執行結果</p>
-
-<div align="center">
-
-  <div>
-  <a href="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/angry-Payphone.mp4">
-    <img src="https://github.com/Mkyzzzzz/MCU-project/raw/main/_posts/Emotion_angry%E9%A0%90%E8%A6%BD%E5%9C%96.png" alt="影片預覽圖"
-         style="display: block; margin: 0 auto; width: 400px;">
-  </a>
-</div>
-
-<p align="center">影3 angry-Payphone</p>
-
-<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/angry-Payphone.png?raw=true"></p>
-<p align="center">圖11偵測angry情緒執行結果</p>
+## 六、盲人視覺輔助系統成果展示
+編譯失敗
 
 <br>
 <br>

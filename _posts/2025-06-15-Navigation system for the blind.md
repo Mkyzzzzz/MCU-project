@@ -731,6 +731,9 @@ QRcode大小:10cm*10cm
 
 <p align="center">影1 AI盲人導航系統成果展示</p>
 
+<p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/_posts/%E7%A8%8B%E5%BC%8F%E5%9F%B7%E8%A1%8C%E6%89%80%E7%94%A2%E7%94%9F%E6%96%87%E5%AD%97.png?raw=true"></p>
+<p align="center">圖9 程式執行所產生文字</p>
+
 <br>
 <br>
 

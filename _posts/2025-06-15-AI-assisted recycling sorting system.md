@@ -624,7 +624,118 @@ Development Board: AMB82-mini（MCU: Realtek RTL8735B）
 
 <b>Code:</b>
 
+```
+/*
+ 功能說明：
+ - 按下按鈕拍照
+ - 送圖片至 Gemini Vision 分析並回傳文字
+ - 將文字送 Google TTS 生成語音檔
+ - 播放 MP3 語音
+*/
 
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include "GenAI.h"
+#include "VideoStream.h"
+#include "AmebaFatFS.h"
+
+// === 請填寫以下資訊 ===
+char ssid[] = "hahaha";
+const char password[] = "93034570";
+String Gemini_key = "AIzaSyAzAQRnNDlBXiac4E5SZcLSua-luXpbC3E";  // https://makersuite.google.com/app/apikey
+
+// ========== 全域變數 ==========
+WiFiSSLClient client;
+GenAI llm;
+GenAI tts;
+AmebaFatFS fs;
+VideoSetting config(768, 768, CAM_FPS, VIDEO_JPEG, 1);
+#define CHANNEL 0
+
+const int buttonPin = 1;
+String prompt_msg = "請問這個回收物是什麼?";
+String mp3Filename = "voice.mp3";
+
+uint32_t img_addr = 0;
+uint32_t img_len = 0;
+
+// ====== 初始化 WiFi ======
+void initWiFi() {
+  for (int i = 0; i < 2; i++) {
+    WiFi.begin(ssid, password);
+    delay(1000);
+    Serial.println("");
+    Serial.print("Connecting to ");
+    Serial.println(ssid);
+
+    uint32_t start = millis();
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      if (millis() - start > 8000) break;
+    }
+
+    if (WiFi.status() == WL_CONNECTED) {
+      Serial.println("\nConnected, IP address: ");
+      Serial.println(WiFi.localIP());
+      return;
+    }
+  }
+  Serial.println("WiFi failed.");
+}
+
+// ====== MP3 播放函式 ======
+void sdPlayMP3(String filename) {
+  fs.begin();
+  String filepath = String(fs.getRootPath()) + filename;
+  File file = fs.open(filepath, MP3);
+  file.setMp3DigitalVol(120);
+  file.playMp3();
+  file.close();
+  fs.end();
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // 初始化 WiFi & 相機 & 按鈕
+  initWiFi();
+  pinMode(buttonPin, INPUT);
+  pinMode(LED_B, OUTPUT);
+  pinMode(LED_G, OUTPUT);
+
+  config.setRotation(0);
+  Camera.configVideoChannel(CHANNEL, config);
+  Camera.videoInit();
+  Camera.channelBegin(CHANNEL);
+  Camera.printInfo();
+}
+
+void loop() {
+  if (digitalRead(buttonPin) == 1) {
+    // LED 藍色閃爍 3 次
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(LED_B, HIGH); delay(300);
+      digitalWrite(LED_B, LOW); delay(300);
+    }
+
+    // 拍照
+    Camera.getImage(CHANNEL, &img_addr, &img_len);
+
+    // 圖片送至 Gemini Vision
+    String result = llm.geminivision(Gemini_key, "gemini-2.0-pro-vision", prompt_msg, img_addr, img_len, client);
+    Serial.println("[Gemini 回應] " + result);
+
+    // 將文字結果送至 Google TTS 並生成 MP3
+    tts.googletts(mp3Filename, result, "zh-TW");
+    delay(500);
+
+    // 播放 MP3
+    sdPlayMP3(mp3Filename);
+    delay(2000);
+  }
+}
+
+```
 ## 六、AI輔助回收分類系統成果展示
 
 <p align="center"><img src="https://github.com/Mkyzzzzz/MCU-project/blob/main/AI-assisted%20recycling%20sorting%20system_1.png?raw=true"></p>
